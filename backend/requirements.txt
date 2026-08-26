@@ -10,3 +10,4 @@ passlib[bcrypt]
 pytest
 httpx
 python-multipart
+google-genai==2.20.0

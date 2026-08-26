@@ -154,3 +154,18 @@ class AuditLog(Base):
     new_value = Column(JSON, nullable=True)
     metadata_ = Column("metadata", JSON, nullable=True)
     timestamp = Column(DateTime(timezone=True), server_default=func.now())
+
+class AIRecommendation(Base):
+    __tablename__ = "ai_recommendations"
+    id = Column(Integer, primary_key=True, index=True)
+    exception_id = Column(Integer, ForeignKey("exceptions.id"), nullable=True)
+    loan_id = Column(String, index=True, nullable=True)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=True)
+    action_type = Column(String)  # EXPLAIN, SUGGEST, COMPARE, NOTE, SEVERITY, SUMMARY, RULE
+    model_name = Column(String)
+    prompt_template = Column(String)
+    raw_response = Column(JSON, nullable=True)
+    structured_data = Column(JSON, nullable=True)
+    confidence = Column(String, nullable=True)
+    status = Column(String, default="GENERATED")  # GENERATED, ACCEPTED, REJECTED, EDITED
+    created_at = Column(DateTime(timezone=True), server_default=func.now())

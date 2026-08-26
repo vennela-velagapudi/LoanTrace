@@ -40,9 +40,14 @@ export default function ReviewerDashboard() {
 
   return (
     <div className="p-8 max-w-7xl mx-auto">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Reviewer Dashboard</h1>
-        <p className="text-[var(--muted-foreground)]">Manage and resolve validation exceptions.</p>
+      <div className="flex justify-between items-center mb-6">
+        <div>
+          <h1 className="text-3xl font-bold">Reviewer Dashboard</h1>
+          <p className="text-[var(--muted-foreground)]">Manage and resolve validation exceptions</p>
+        </div>
+        <Link href="/reviewer/ai-tools" className="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded font-semibold shadow flex items-center gap-2">
+          AI Tools Workspace
+        </Link>
       </div>
 
       {summary && (

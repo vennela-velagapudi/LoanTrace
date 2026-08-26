@@ -34,3 +34,12 @@ All AI-generated code is reviewed by the human developer. Tests (pytest, jest) a
 - **Frontend RBAC**: Wrote a lib/auth.ts helper and ClientNav.tsx component to handle real token decoding, role enforcement routing (Operator -> /operator, Reviewer -> /reviewer, Consumer -> /consumer), and logout state.
 - **Backend RBAC Verification**: Created 	est_auth.py to assert that operators and consumers properly receive 403 Forbidden when attempting reviewer mutations. Handled the passlib compatibility bug with crypt>=4.0.0 gracefully.
 - **Full Workflow Intact**: Re-tested validation flows and reviewer APIs.
+
+## Phase 4 AI Review Assistant
+- **Tools Used**: AI Agent (myself), Python, FastAPI, google-genai, Next.js, React.
+- **Representative Prompts**: Used prompt schemas such as Explain this loan validation exception to a reviewer... mapping JSON context and Pydantic schemas (e.g. AIExplanation).
+- **Code Reviewed**: AI Agent reviewed existing DB schemas and wrote new AIRecommendation models.
+- **Accepted Changes**: Pydantic structured output models for gemini actions (EXPLAIN, SUGGEST, COMPARE, NOTE, BATCH, RULE). React components for AI Assistant Panel split view.
+- **Rejected/Corrected AI Output Examples**: 1. google-genai generates Pydantic models automatically from schema but when structured_data (JSON SQLAlchemy Column) was updated inside a dict directly, SQLAlchemy did not flag it as modified in the commit; fixed by reassigning a .copy() dictionary. 2. Alembic auto-generate attempted to add a atch_alter_table on exceptions that threw SQLite constraint name errors since exceptions table wasn	 changing. Fixed by removing the batch alter from the migration manually.
+- **% AI Generated Code**: 100% of the Phase 4 source code was drafted by AI and compiled cleanly.
+- **Lessons Learned**: Direct Pydantic schema validation inside google-genai is incredibly robust and makes tool parsing perfectly deterministic compared to old raw-json text generation.
