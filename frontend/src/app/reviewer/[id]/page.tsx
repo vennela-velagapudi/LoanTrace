@@ -246,6 +246,29 @@ export default function ExceptionDetail() {
               >
                 Request Correction
               </button>
+              
+              <div className="mt-6 pt-4 border-t border-slate-700">
+                <button 
+                  className="w-full py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded shadow"
+                  onClick={async () => {
+                    try {
+                      const res = await apiFetch(`/api/verified-loans/verify/${loan.loan_id}`, { method: 'POST' });
+                      if (res.ok) {
+                        alert("Loan verified successfully and recorded to immutable ledger.");
+                        fetchData();
+                      } else {
+                        const data = await res.json();
+                        alert("Cannot verify: " + (data.detail || "Unknown error"));
+                      }
+                    } catch (e) {
+                      console.error(e);
+                    }
+                  }}
+                >
+                  Finalize & Verify Loan Record
+                </button>
+                <p className="text-xs text-slate-400 mt-2 text-center">Verification creates an immutable hashed record. All exceptions must be resolved first.</p>
+              </div>
             </div>
           </div>
 

@@ -43,3 +43,9 @@ All AI-generated code is reviewed by the human developer. Tests (pytest, jest) a
 - **Rejected/Corrected AI Output Examples**: 1. google-genai generates Pydantic models automatically from schema but when structured_data (JSON SQLAlchemy Column) was updated inside a dict directly, SQLAlchemy did not flag it as modified in the commit; fixed by reassigning a .copy() dictionary. 2. Alembic auto-generate attempted to add a atch_alter_table on exceptions that threw SQLite constraint name errors since exceptions table wasn	 changing. Fixed by removing the batch alter from the migration manually.
 - **% AI Generated Code**: 100% of the Phase 4 source code was drafted by AI and compiled cleanly.
 - **Lessons Learned**: Direct Pydantic schema validation inside google-genai is incredibly robust and makes tool parsing perfectly deterministic compared to old raw-json text generation.
+
+## Phase 5 Verified Records and Consumer Workflow
+- **Tools Used**: AI Agent (myself), Python, FastAPI, React.
+- **Implementation**: Created SHA-256 deterministic hashing logic for canonical JSON structures. Implemented VerifiedLoan APIs. Built ConsumerDashboard and VerifiedRecordDetail to surface audit logs and immutable hashes.
+- **Engineering Decisions**: Made verification explicitly block on unresolved exceptions, matching real-world requirements. Kept export robust by tracking CSV headers dynamically from JSON schemas.
+- **Lessons Learned**: SQLAlchemy distinct queries are slightly different across SQL dialects; used .count() over subsets safely in sqlite for memory footprint.

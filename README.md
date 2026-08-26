@@ -5,15 +5,16 @@
 
 LoanTrace is an AI-powered FinTech application designed to help Data Operators and Reviewers ingest, validate, and verify loan data from conflicting sources.
 
-## Phase 4: AI Review Assistant (Current Status)
-The project has completed Phase 4.
+## Phase 5: Verified Records & Data Consumer Workflow (Current Status)
+The project has completed Phase 5.
 *   **Data Foundation**: Capable of generating deterministic synthetic loan data with intentional anomalies.
 *   **Ingestion Pipeline**: Upload endpoint parses CSV files, preserves raw lineage, and attempts schema normalization.
 *   **Validation Engine**: A deterministic Python rules engine executes configurable data quality and cross-source checks.
 *   **Reviewer Workflow**: Reviewers can review queue items, patch canonical data safely, and approve/reject/request correction.
 *   **Audit Trail**: Highly secure append-only audit trail implemented for all mutations.
 *   **Authentication**: Frontend fully wired to FastAPI backend utilizing JWT and RBAC.
-*   **AI Review Assistant**: Fully integrated `google-genai` service for anomaly explanation, suggestions, cross-source conflict resolution, note generation, batch summaries, and natural language rule generation. Includes complete human-in-the-loop controls and mock-fallback mode for demos.
+*   **AI Review Assistant**: Fully integrated `google-genai` service for anomaly explanation, suggestions, cross-source conflict resolution, note generation, batch summaries, and natural language rule generation.
+*   **Verified Immutable Ledger**: Verified records receive a deterministic SHA-256 hash. Data Consumer dashboard accesses read-only immutable ledgers and exports them.
 
 ## Local Development Setup
 
