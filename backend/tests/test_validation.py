@@ -5,6 +5,20 @@ from sqlalchemy.orm import sessionmaker
 from app.database import Base
 from app.models import NormalizedLoan, RawRecord, UploadBatch
 from app.services.validation import run_validation
+import app.services.validation as validation_module
+validation_module.load_rules_config = lambda: {
+    "required_fields": ["loan_id"],
+    "payment_status": {
+        "valid_statuses": ["Current", "Late"],
+        "dpd_consistency": {
+            "Current": {"max_dpd": 0}
+        }
+    },
+    "numeric_rules": {"balance_min": 0, "principal_min": 0},
+    "interest_rate": {"min": 0.0, "max": 0.3},
+    "valid_states": ["CA", "NY", "TX"],
+    "suspicious_borrower_threshold": 3
+}
 
 SQLALCHEMY_DATABASE_URL = "sqlite:///:memory:"
 
@@ -95,11 +109,27 @@ def test_invalid_interest_rate(db):
     assert "invalid_interest_rate" in [e.rule_name for e in db.query(ExceptionModel).all()]
 
 def test_payment_status_dpd_inconsistency(db):
-    db.add(NormalizedLoan(loan_id="L-1", payment_status="Current", days_past_due=90))
+    db.add(NormalizedLoan(loan_id="L-1", payment_status="Current", days_past_due=90, document_status="Available"))
     db.commit()
-    run_validation(db)
+    import unittest.mock
+    with unittest.mock.patch('app.services.validation.load_validation_config') as mock_config:
+        mock_config.return_value = {
+            "required_fields": ["loan_id"],
+            "payment_status": {
+                "valid_statuses": ["Current", "Late"],
+                "dpd_consistency": {
+                    "Current": {"max_dpd": 0}
+                }
+            },
+            "numeric_rules": {"balance_min": 0, "principal_min": 0},
+            "interest_rate": {"min": 0.0, "max": 0.3},
+            "valid_states": ["CA", "NY", "TX"],
+            "suspicious_borrower_threshold": 3
+        }
+        run_validation(db)
     from app.models import ExceptionModel
-    assert "payment_status_inconsistent_dpd" in [e.rule_name for e in db.query(ExceptionModel).all()]
+    exceptions = db.query(ExceptionModel).all()
+    assert "payment_status_inconsistent_dpd" in [e.rule_name for e in exceptions]
 
 def test_missing_document_status(db):
     db.add(NormalizedLoan(loan_id="L-1", document_status=None, manifest_document_status=None))

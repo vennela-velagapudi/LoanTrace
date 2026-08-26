@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import ClientNav from "@/components/ClientNav";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,12 +34,7 @@ export default function RootLayout({
               <div className="w-8 h-8 rounded bg-primary flex items-center justify-center font-bold text-white shadow-[0_0_15px_rgba(59,130,246,0.5)]">LT</div>
               <span className="font-semibold text-xl tracking-tight">LoanTrace</span>
             </div>
-            <nav className="flex items-center gap-6 text-sm text-[var(--muted-foreground)]">
-              <a href="/operator" className="hover:text-white transition-colors">Operator</a>
-              <a href="/reviewer" className="hover:text-white transition-colors">Reviewer</a>
-              <a href="/consumer" className="hover:text-white transition-colors">Consumer</a>
-              <a href="/login" className="px-4 py-2 rounded-md bg-secondary text-white hover:bg-[var(--accent)] transition-colors">Login</a>
-            </nav>
+            <ClientNav />
           </div>
         </header>
         <main className="flex-1 flex flex-col">

@@ -39,6 +39,8 @@ class NormalizedLoan(Base):
     raw_record_id = Column(Integer, ForeignKey("raw_records.id"), nullable=True)
     batch_id = Column(Integer, ForeignKey("upload_batches.id"), nullable=True)
     
+    raw_record = relationship("RawRecord")
+    
     # ------------------------------------------------
     # LOAN TAPE FIELDS
     # ------------------------------------------------
@@ -114,6 +116,21 @@ class ExceptionModel(Base):
     description = Column(String)
     status = Column(String, default="OPEN")
     created_at = Column(DateTime(timezone=True), server_default=func.now())
+    updated_at = Column(DateTime(timezone=True), onupdate=func.now())
+    assigned_to = Column(Integer, ForeignKey("users.id"), nullable=True)
+    resolved_at = Column(DateTime(timezone=True), nullable=True)
+    resolution_reason = Column(String, nullable=True)
+    version = Column(Integer, default=1)
+    
+    normalized_loan = relationship("NormalizedLoan", backref="exceptions")
+
+class ExceptionComment(Base):
+    __tablename__ = "exception_comments"
+    id = Column(Integer, primary_key=True, index=True)
+    exception_id = Column(Integer, ForeignKey("exceptions.id"))
+    reviewer_id = Column(Integer, ForeignKey("users.id"))
+    comment_text = Column(String)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
     
 class VerifiedLoan(Base):
     __tablename__ = "verified_loans"
@@ -128,10 +145,11 @@ class VerifiedLoan(Base):
 class AuditLog(Base):
     __tablename__ = "audit_logs"
     id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(Integer, ForeignKey("users.id"))
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=True)
     action = Column(String)
     entity_type = Column(String)
     entity_id = Column(Integer)
+    loan_id = Column(String, index=True, nullable=True)
     old_value = Column(JSON, nullable=True)
     new_value = Column(JSON, nullable=True)
     metadata_ = Column("metadata", JSON, nullable=True)

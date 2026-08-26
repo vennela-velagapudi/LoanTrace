@@ -1,4 +1,23 @@
+"use client";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { getToken, getUserRole } from "@/lib/auth";
+
 export default function ConsumerDashboard() {
+  const router = useRouter();
+
+  useEffect(() => {
+    const t = getToken();
+    if (!t) {
+      router.push("/login");
+      return;
+    }
+    const role = getUserRole();
+    if (role !== "DATA_CONSUMER") {
+      router.push("/login");
+    }
+  }, [router]);
+
   return (
     <div className="p-8">
       <div className="flex justify-between items-center mb-8">

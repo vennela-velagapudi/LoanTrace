@@ -22,3 +22,15 @@ All AI-generated code is reviewed by the human developer. Tests (pytest, jest) a
 
 ## Lessons Learned
 *(Lessons will be documented here as development progresses)*
+
+## Phase 3 Development
+- **AI Assisted Implementation**: Implemented the Reviewer Workflow, including Exception APIs with RBAC, field editing with dynamic partial revalidation, and append-only Audit Trails. Also built the NextJS /reviewer dashboard.
+- **Human Review**: Verified strict enforcement of the immutable RawRecord requirement. Verified that re-running validation handles old unresolved exceptions properly without duplicating or improperly wiping unrelated errors.
+- **Tests**: Created test_review.py which fully tests assign, edit, comment, revalidation, and decisions. Tests passed 6/6.
+- **Limitations**: The frontend Reviewer authentication is currently mocked using localStorage since true frontend token exchange wasn't strictly enforced in the challenge UI constraints, though the backend enforces JWT properly.
+
+## Phase 3 Hardening
+- **Authentication Integration**: Upgraded the frontend /login UI to actually POST credentials to the backend /api/auth/token endpoint and receive a real JWT. Removed the mocked localStorage hardcoded credentials.
+- **Frontend RBAC**: Wrote a lib/auth.ts helper and ClientNav.tsx component to handle real token decoding, role enforcement routing (Operator -> /operator, Reviewer -> /reviewer, Consumer -> /consumer), and logout state.
+- **Backend RBAC Verification**: Created 	est_auth.py to assert that operators and consumers properly receive 403 Forbidden when attempting reviewer mutations. Handled the passlib compatibility bug with crypt>=4.0.0 gracefully.
+- **Full Workflow Intact**: Re-tested validation flows and reviewer APIs.

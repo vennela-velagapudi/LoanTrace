@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { apiFetch, getToken, getUserRole } from "@/lib/auth";
 
 type UploadSummary = {
   filename: string;
@@ -12,7 +14,20 @@ type UploadSummary = {
 };
 
 export default function OperatorDashboard() {
+  const router = useRouter();
   const [file, setFile] = useState<File | null>(null);
+
+  useEffect(() => {
+    const t = getToken();
+    if (!t) {
+      router.push("/login");
+      return;
+    }
+    const role = getUserRole();
+    if (role !== "DATA_OPERATOR") {
+      router.push("/login");
+    }
+  }, [router]);
   const [uploading, setUploading] = useState(false);
   const [summary, setSummary] = useState<UploadSummary | null>(null);
   const [error, setError] = useState("");
@@ -33,8 +48,7 @@ export default function OperatorDashboard() {
     formData.append("file", file);
 
     try {
-      // The API endpoint should match the backend router
-      const response = await fetch("http://localhost:8000/api/files/upload", {
+      const response = await apiFetch("/api/files/upload", {
         method: "POST",
         body: formData,
       });
