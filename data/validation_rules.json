@@ -1,0 +1,1 @@
+{"rules": [{"field": "loan_id", "rule": "not_null"}, {"field": "loan_id", "rule": "unique"}]}

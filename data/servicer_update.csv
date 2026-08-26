@@ -1,0 +1,501 @@
+loan_id,current_balance,interest_rate,payment_status,days_past_due,servicer_name,last_payment_date,last_updated_at,document_status
+L-101438,71602.41,0.0986,Charged Off,147,Beta Loan Servicers,2024-05-08,2024-09-01,Missing
+L-100938,103578.17,0.07,Closed,0,Gamma Collections,2020-07-09,2024-09-01,Available
+L-100894,134495.87,0.1455,Late (16-30 days),24,Beta Loan Servicers,2025-01-28,2024-09-01,Available
+L-100381,271516.32,0.1089,Current,0,Delta Financial,2021-08-20,2024-09-01,Expired
+L-101791,34336.26,0.0644,Late (16-30 days),22,Delta Financial,2023-10-14,2024-09-01,Pending
+L-100162,198412.09,0.1301,Fully Paid,0,Beta Loan Servicers,2019-12-27,2024-09-01,Expired
+L-101856,115965.01,0.0332,Fully Paid,0,Beta Loan Servicers,2023-01-04,2024-09-01,Available
+L-100732,460731.5,0.1175,Late (16-30 days),20,Delta Financial,2021-05-21,2024-09-01,Expired
+L-101826,215301.79,0.0637,Closed,116,Alpha Servicing,2021-11-21,2024-09-01,Expired
+L-100978,269876.45,0.0444,Charged Off,126,Delta Financial,2023-08-12,2024-09-01,Missing
+L-101449,218966.42,0.1297,Fully Paid,0,Delta Financial,2020-05-20,2024-09-01,Pending
+L-101003,359001.92,0.0869,Late (16-30 days),20,Gamma Collections,2024-07-26,2024-09-01,Pending
+L-101638,46580.54,0.0817,Late (16-30 days),20,Beta Loan Servicers,2026-03-10,2024-09-01,Available
+L-100616,461735.85,0.1272,Fully Paid,0,Delta Financial,2020-10-19,2024-09-01,Available
+L-101704,313419.13,0.1013,Late (31-120 days),154,Delta Financial,2019-08-16,2024-09-01,Pending
+L-100012,128654.19,0.0832,Current,0,Beta Loan Servicers,2021-09-02,2024-09-01,Expired
+L-101513,47076.75,0.0828,Closed,0,Delta Financial,2023-03-25,2024-09-01,Expired
+L-100665,156606.44,0.0523,Charged Off,178,Delta Financial,2022-03-25,2024-09-01,Missing
+L-100522,464903.67,0.104,Fully Paid,0,Beta Loan Servicers,2021-10-10,2024-09-01,Expired
+L-101991,366027.01,0.0459,Late (16-30 days),25,Beta Loan Servicers,2020-10-18,2024-09-01,Expired
+L-100767,115099.92,0.1221,Default,177,Beta Loan Servicers,2020-11-09,2024-09-01,Pending
+L-101706,75683.95,0.0492,Default,0,Beta Loan Servicers,2022-06-30,2024-09-01,Expired
+L-101027,340298.96,0.1057,Default,116,Alpha Servicing,2021-11-20,2024-09-01,Available
+L-100895,31523.01,0.1113,Default,107,Beta Loan Servicers,2019-11-17,2024-09-01,Missing
+L-100878,-500.0,0.1329,Default,89,Delta Financial,2024-12-12,2024-09-01,Available
+L-101939,73734.43,0.0913,Default,92,Alpha Servicing,2020-10-14,2024-09-01,Expired
+L-101072,90196.44,0.089,Default,29,Gamma Collections,2026-03-17,2024-09-01,Pending
+L-100305,173373.02,0.1185,Default,120,Beta Loan Servicers,2019-06-10,2024-09-01,Pending
+L-100594,104718.67,0.0805,Default,0,Delta Financial,2021-11-04,2024-09-01,Pending
+L-101557,6626.28,0.1241,Default,0,Beta Loan Servicers,2022-07-02,2024-09-01,Missing
+L-101104,130561.65,0.091,Default,0,Beta Loan Servicers,2018-04-26,2024-09-01,Expired
+L-101483,11802.79,0.0746,Default,98,Gamma Collections,2020-04-06,2024-09-01,Expired
+L-101022,50589.67,0.0735,Default,16,Alpha Servicing,2024-03-03,2024-09-01,Expired
+L-100629,86923.35,0.091,Default,157,Gamma Collections,2022-05-14,2024-09-01,Pending
+,96185.99,0.0881,Default,188,Beta Loan Servicers,2020-01-28,2024-09-01,Pending
+L-100561,53271.95,0.1328,Default,0,Delta Financial,2020-08-07,2024-09-01,Missing
+L-100348,57122.36,0.0567,Default,0,Alpha Servicing,2024-03-14,2024-09-01,Expired
+L-101001,30791.76,0.1341,Default,121,Alpha Servicing,2023-03-18,2024-09-01,Available
+L-101036,254739.77,0.075,Default,127,Beta Loan Servicers,2022-04-05,2024-09-01,Missing
+L-100740,246235.88,0.1173,Default,86,Delta Financial,2019-09-07,2024-09-01,Missing
+L-101807,34908.26,0.0415,Charged Off,163,Delta Financial,2019-12-04,2024-09-01,Expired
+L-100478,231832.08,0.1078,Late (16-30 days),19,Alpha Servicing,2024-03-08,2024-09-01,Missing
+L-101285,56908.53,0.0947,Late (16-30 days),17,Alpha Servicing,2020-02-18,2024-09-01,Expired
+L-100130,224186.18,0.0592,Current,0,Delta Financial,2020-01-12,2024-09-01,Expired
+L-100513,109711.3,0.0369,Default,161,Beta Loan Servicers,2020-04-15,2024-09-01,Available
+L-100222,72781.58,0.0493,Fully Paid,0,Gamma Collections,2019-04-01,2024-09-01,Expired
+L-101486,70300.21,0.1161,Late (31-120 days),131,Delta Financial,2020-06-08,2024-09-01,Missing
+L-100572,76223.59,0.0317,Late (31-120 days),74,Gamma Collections,2022-04-16,2024-09-01,Available
+L-101237,45221.89,0.0909,Late (31-120 days),109,Beta Loan Servicers,2022-01-04,2024-09-01,Pending
+L-101030,142816.64,0.0581,Current,0,Beta Loan Servicers,2018-11-10,2024-09-01,Pending
+L-101025,98380.06,0.1033,Late (31-120 days),85,Gamma Collections,2019-10-26,2024-09-01,Missing
+L-100962,297543.06,0.0575,Default,122,Gamma Collections,2021-01-12,2024-09-01,Pending
+L-100354,77440.65,0.0498,Closed,0,Beta Loan Servicers,2021-07-19,2024-09-01,Expired
+L-100856,189315.68,0.0774,Closed,0,Delta Financial,2019-03-09,2024-09-01,Expired
+L-100424,324354.59,0.0433,Current,0,Alpha Servicing,2022-11-28,2024-09-01,Pending
+L-101451,180542.05,0.119,Current,0,Delta Financial,2018-09-01,2024-09-01,Expired
+L-100528,3781.24,0.1011,Late (31-120 days),87,Gamma Collections,2022-05-22,2024-09-01,Available
+L-101405,20891.5,0.1455,Late (31-120 days),115,Delta Financial,2022-10-02,2024-09-01,Pending
+L-101171,4309.36,0.099,Late (16-30 days),28,Delta Financial,2020-11-07,2024-09-01,Pending
+L-100352,142753.34,0.0436,Closed,0,Beta Loan Servicers,2021-04-11,2024-09-01,Expired
+L-100168,5000.0,0.0586,Closed,0,Beta Loan Servicers,2024-10-25,2024-09-01,Pending
+L-101296,20775.7,0.0856,Closed,0,Gamma Collections,2025-10-30,2024-09-01,Pending
+L-100329,27929.4,0.0725,Late (31-120 days),99,Alpha Servicing,2024-09-28,2024-09-01,Missing
+L-100279,159525.65,0.0941,Closed,0,Gamma Collections,2021-04-05,2024-09-01,Pending
+L-100419,65962.82,0.1077,Default,32,Beta Loan Servicers,2025-05-16,2024-09-01,Pending
+L-101461,124344.91,0.1015,Fully Paid,0,Alpha Servicing,2021-10-21,2024-09-01,Pending
+L-100448,103888.08,0.1044,Charged Off,115,Beta Loan Servicers,2023-06-21,2024-09-01,Available
+L-101180,123238.68,0.0793,Late (31-120 days),179,Gamma Collections,2022-10-13,2024-09-01,Expired
+L-101780,86467.7,0.0711,Fully Paid,0,Alpha Servicing,2025-03-27,2024-09-01,Pending
+L-101198,257855.57,0.1286,Current,0,Beta Loan Servicers,2020-05-31,2024-09-01,Pending
+L-101709,159348.73,0.1329,Late (31-120 days),136,Alpha Servicing,2020-08-03,2024-09-01,Missing
+L-101640,136490.42,0.043,Charged Off,154,Beta Loan Servicers,2019-03-26,2024-09-01,Pending
+L-101073,57469.97,0.091,Fully Paid,0,Gamma Collections,2021-08-18,2024-09-01,Pending
+L-101837,261443.57,0.0734,Default,85,Gamma Collections,2024-09-07,2024-09-01,Expired
+L-101721,251514.36,0.1122,Default,150,Alpha Servicing,2025-05-25,2024-09-01,Pending
+L-101673,129962.87,0.1,Late (16-30 days),21,Beta Loan Servicers,2022-08-02,2024-09-01,Pending
+L-101880,116127.19,0.0932,Default,68,Beta Loan Servicers,2023-04-07,2024-09-01,Pending
+L-100326,2276.64,0.051,Closed,0,Beta Loan Servicers,2021-11-25,2024-09-01,Missing
+L-100251,141474.85,0.0708,Fully Paid,0,Delta Financial,2023-09-15,2024-09-01,Missing
+L-100643,30709.51,0.0629,Default,105,Delta Financial,2021-12-21,2024-09-01,Pending
+L-101153,229495.64,0.0806,Late (31-120 days),94,Gamma Collections,2023-09-14,2024-09-01,Pending
+L-101608,105915.79,0.1043,Default,137,Beta Loan Servicers,2023-07-31,2024-09-01,Available
+L-100048,303597.61,0.0708,Fully Paid,0,Gamma Collections,2021-03-18,2024-09-01,Missing
+L-100029,295859.33,0.36137737001236686,Default,87,Gamma Collections,2023-04-01,2024-09-01,Expired
+L-100944,318439.39,0.0383,Charged Off,83,Delta Financial,2021-02-09,2024-09-01,Available
+L-101430,5992.17,0.0709,Default,182,Beta Loan Servicers,2018-11-05,2024-09-01,Pending
+L-101683,33528.73,0.0322,Charged Off,108,Gamma Collections,2024-01-14,2024-09-01,
+L-101941,151663.35,0.0732,Late (31-120 days),141,Gamma Collections,2021-10-12,2024-09-01,Available
+L-100433,33543.59,0.1476,Late (31-120 days),53,Beta Loan Servicers,2024-11-11,2024-09-01,Missing
+L-101763,53109.01,0.134,Current,0,Beta Loan Servicers,2020-02-19,2024-09-01,Pending
+L-100283,292422.14,0.1414,Charged Off,41,Gamma Collections,2020-12-11,2024-09-01,Missing
+L-101355,13706.16,0.0613,Charged Off,112,Beta Loan Servicers,2021-07-16,2024-09-01,Available
+L-101425,112543.75,0.0723,Current,0,Delta Financial,2022-08-10,2024-09-01,Pending
+L-100013,2501.61,0.1412,Late (16-30 days),19,Gamma Collections,2020-07-15,2024-09-01,Available
+L-100592,17695.15,0.0598,Current,0,Gamma Collections,2023-12-04,2024-09-01,Pending
+L-101471,73400.62,0.065,Default,107,Gamma Collections,2021-09-02,2024-09-01,Missing
+L-100559,136576.92,0.0811,Default,126,Beta Loan Servicers,2024-04-10,2024-09-01,Expired
+L-101047,318181.81,0.0904,Default,81,Alpha Servicing,2022-03-03,2024-09-01,Missing
+L-100529,91425.01,0.49661355753914327,Closed,0,Beta Loan Servicers,2025-07-25,2024-09-01,Pending
+L-101890,114583.55,0.0997,Late (16-30 days),17,Delta Financial,2022-04-28,2024-09-01,Expired
+L-101598,359165.2,-0.036343460840632086,Charged Off,175,Delta Financial,2018-11-12,2024-09-01,Expired
+L-100719,193379.25,0.0471,Late (31-120 days),188,Alpha Servicing,2020-03-11,2024-09-01,Missing
+L-100859,130955.89,0.0647,Current,0,Beta Loan Servicers,2022-10-26,2024-09-01,Available
+L-100928,22823.44,0.0693,Charged Off,182,Gamma Collections,2019-07-23,2024-09-01,Pending
+L-101891,62878.85,0.1365,Fully Paid,0,Delta Financial,2023-04-22,2024-09-01,Available
+L-101628,31341.04,0.1012,Late (16-30 days),21,Beta Loan Servicers,2022-11-13,2024-09-01,Available
+L-100989,188496.24,0.0675,Late (31-120 days),199,Alpha Servicing,2023-05-01,2024-09-01,Missing
+L-100145,93636.92,0.1203,Late (31-120 days),114,Beta Loan Servicers,2023-09-22,2024-09-01,Expired
+L-100744,5200.56,0.0315,Closed,0,Alpha Servicing,2019-08-21,2024-09-01,Expired
+L-101699,168594.89,0.0504,Late (31-120 days),198,Beta Loan Servicers,2019-05-27,2024-09-01,Pending
+L-101694,131823.18,0.0425,Charged Off,177,Delta Financial,2025-08-06,2024-09-01,Available
+L-101365,160161.34,0.1302,Default,125,Gamma Collections,2021-08-25,2024-09-01,Expired
+L-100544,230678.71,0.1151,Late (16-30 days),27,Beta Loan Servicers,2024-04-19,2024-09-01,Expired
+L-100226,111691.28,0.041,Late (31-120 days),106,Beta Loan Servicers,2025-11-09,2024-09-01,Available
+L-101972,11083.32,0.0672,Default,58,Delta Financial,2019-03-19,2024-09-01,Available
+L-100951,64869.3,0.1457,Late (31-120 days),137,Alpha Servicing,2022-02-07,2024-09-01,Expired
+L-101331,56927.71,0.0473,Late (16-30 days),30,Beta Loan Servicers,2023-06-08,2024-09-01,Available
+L-101424,47805.21,0.0374,Charged Off,118,Alpha Servicing,2023-03-19,2024-09-01,Pending
+L-100777,7607.48,0.0406,Charged Off,98,Gamma Collections,2020-03-29,2024-09-01,Expired
+L-100799,293606.68,0.0526,Closed,0,Delta Financial,2022-08-24,2024-09-01,Missing
+L-100014,16785.34,0.1322,Current,108,Beta Loan Servicers,2025-01-18,2024-09-01,Available
+L-100607,54508.44,0.1346,Closed,0,Gamma Collections,2022-01-07,2024-09-01,Available
+L-100646,285151.6,0.0344,Late (31-120 days),84,Delta Financial,2024-03-24,2024-09-01,Missing
+L-100855,9896.82,0.0789,Charged Off,177,Beta Loan Servicers,2023-12-04,2024-09-01,Missing
+L-101122,264599.57,0.1364,Fully Paid,0,Delta Financial,2023-05-13,2024-09-01,Pending
+L-101206,256819.4,0.1157,Late (16-30 days),26,Gamma Collections,2022-12-18,2024-09-01,Available
+L-101715,91797.73,0.0904,Default,34,Delta Financial,2023-08-23,2024-09-01,Expired
+L-100472,30932.83,0.1062,Fully Paid,0,Gamma Collections,2019-09-18,2024-09-01,Available
+L-101181,84378.74,0.0319,Fully Paid,0,Beta Loan Servicers,2021-04-26,2024-09-01,Missing
+L-100173,114357.29,0.1074,Current,0,Beta Loan Servicers,2022-11-01,2024-09-01,Missing
+L-999885,253976.96,0.0631,Closed,0,Alpha Servicing,2023-01-04,2024-09-01,Pending
+L-100202,401975.41,0.1484,Default,116,Beta Loan Servicers,2022-10-20,2024-09-01,Expired
+L-100823,14709.4,0.1212,Current,0,Gamma Collections,2021-12-13,2024-09-01,Expired
+L-101404,230462.84,0.114,Charged Off,110,Alpha Servicing,2023-12-09,2024-09-01,Missing
+L-101676,8770.71,0.1445,Late (16-30 days),30,Delta Financial,2020-04-15,2024-09-01,Missing
+L-101512,341020.19,0.1033,Default,146,Gamma Collections,2021-09-28,2024-09-01,Available
+L-100635,1012.5,0.0969,Fully Paid,0,Gamma Collections,2020-10-18,2024-09-01,Missing
+L-100758,40452.15,0.0425,Closed,0,Delta Financial,2022-02-21,2024-09-01,Missing
+L-100901,45320.83,0.133,Current,0,Beta Loan Servicers,2022-05-04,2024-09-01,Available
+L-101337,359354.82,0.0889,Late (16-30 days),21,Gamma Collections,2020-07-15,2024-09-01,Expired
+L-100820,313045.81,0.0467,Fully Paid,0,Gamma Collections,2023-05-30,2024-09-01,Missing
+L-101006,320576.19,0.1484,Late (31-120 days),64,Beta Loan Servicers,2023-01-08,2024-09-01,Expired
+L-101611,125862.03,0.0979,Current,0,Beta Loan Servicers,2019-02-21,2024-09-01,Missing
+,32616.81,0.1089,Fully Paid,0,Delta Financial,2021-06-18,2024-09-01,Pending
+L-101366,135040.73,0.066,Late (16-30 days),22,Gamma Collections,2021-04-16,2024-09-01,Pending
+L-100921,459330.6,0.0861,Fully Paid,0,Alpha Servicing,2020-07-28,2024-09-01,Expired
+L-101539,119798.27,0.1106,Charged Off,171,Gamma Collections,2023-04-09,2024-09-01,Expired
+L-101668,12586.38,0.0577,Fully Paid,0,Beta Loan Servicers,2022-05-26,2024-09-01,Expired
+L-100818,77911.32,0.0857,Late (31-120 days),151,Delta Financial,2020-10-18,2024-09-01,Pending
+L-100762,196543.28,0.079,Default,58,Delta Financial,2022-12-31,2024-09-01,Missing
+L-101672,91314.63,0.1238,Fully Paid,0,Beta Loan Servicers,2022-02-11,2024-09-01,Missing
+L-100970,66072.2,0.0974,Late (16-30 days),29,Delta Financial,2025-06-26,2024-09-01,Expired
+L-101473,97234.16,0.136,Fully Paid,0,Beta Loan Servicers,2025-10-16,2024-09-01,Available
+L-100886,117319.83,0.108,Charged Off,77,Beta Loan Servicers,2026-04-22,2024-09-01,Available
+L-100788,108939.81,0.096,Late (16-30 days),21,Alpha Servicing,2024-01-09,2024-09-01,Available
+L-101879,65921.87,0.1453,Charged Off,122,Delta Financial,2020-07-26,2024-09-01,Expired
+L-101930,18641.49,0.1468,Default,196,Delta Financial,2022-10-08,2024-09-01,Available
+L-100515,59162.13,0.1464,Late (31-120 days),107,Delta Financial,2019-06-23,2024-09-01,Available
+L-100984,204988.05,0.0482,Default,36,Alpha Servicing,2023-03-22,2024-09-01,Missing
+L-100807,122050.96,0.1357,Default,53,Delta Financial,2023-02-03,2024-09-01,Missing
+L-100095,110336.04,0.1264,Late (31-120 days),132,Delta Financial,2019-11-07,2024-09-01,Expired
+L-101151,74241.63,0.1145,Current,0,Gamma Collections,2022-03-15,2024-09-01,Missing
+L-100722,97945.12,0.0885,Closed,0,Gamma Collections,2022-01-15,2024-09-01,Available
+L-100257,149088.9,0.0738,Charged Off,89,Alpha Servicing,2024-11-09,2024-09-01,Missing
+L-100017,205186.69,0.0544,Closed,0,Alpha Servicing,2021-05-24,2024-09-01,Pending
+L-101024,21426.13,0.1448,Default,82,Gamma Collections,2024-12-23,2024-09-01,Available
+L-101374,88918.29,0.072,Closed,0,Beta Loan Servicers,2020-01-16,2024-09-01,Available
+L-101510,80297.83,0.0326,Charged Off,100,Delta Financial,2025-06-28,2024-09-01,Expired
+L-100700,124497.38,0.1106,Closed,0,Beta Loan Servicers,2020-12-11,2024-09-01,Expired
+L-101740,119956.03,0.0927,Late (31-120 days),66,Alpha Servicing,2025-07-26,2024-09-01,Expired
+L-101312,-500.0,0.091,Default,49,Gamma Collections,2020-02-20,2024-09-01,Pending
+L-100286,109594.41,0.1224,Default,42,Beta Loan Servicers,2020-10-11,2024-09-01,Available
+L-101200,12136.11,0.0433,Late (16-30 days),26,Delta Financial,2019-12-22,2024-09-01,Available
+L-100892,24892.01,0.0573,Late (31-120 days),74,Delta Financial,2022-10-09,2024-09-01,Available
+L-100636,277950.29,0.0888,Late (31-120 days),55,Beta Loan Servicers,2021-10-06,2024-09-01,Expired
+L-100674,77141.41,0.1173,Current,0,Alpha Servicing,2024-04-17,2024-09-01,Pending
+L-101803,69586.86,0.073,Charged Off,116,Beta Loan Servicers,2024-11-30,2024-09-01,Expired
+L-100656,38725.69,0.063,Fully Paid,0,Alpha Servicing,2022-07-13,2024-09-01,Expired
+L-100378,193955.62,-0.010439705231080842,Default,141,Beta Loan Servicers,2024-01-02,2024-09-01,Available
+L-100144,101483.45,0.0812,Late (16-30 days),26,Delta Financial,2021-12-05,2024-09-01,Missing
+L-101005,315162.68,0.1019,Closed,0,Delta Financial,2024-04-17,2024-09-01,Expired
+L-101911,351067.8,0.1401,Charged Off,31,Gamma Collections,2019-06-19,2024-09-01,Available
+L-100127,296509.32,0.0889,Late (16-30 days),27,Delta Financial,2021-06-26,2024-09-01,Available
+L-100588,11408.74,0.1135,Default,194,Alpha Servicing,2022-11-09,2024-09-01,Missing
+L-101173,172652.0,0.0403,Default,186,Beta Loan Servicers,2025-12-02,2024-09-01,Pending
+L-101276,147209.65,0.1079,Closed,0,Beta Loan Servicers,2021-06-30,2024-09-01,Expired
+L-101100,32089.58,0.0988,Current,0,Alpha Servicing,2021-03-11,2024-09-01,Available
+L-101063,145727.78,0.0534,Closed,0,Gamma Collections,2025-03-10,2024-09-01,Expired
+L-101013,117303.76,0.0653,Late (16-30 days),22,Delta Financial,2024-05-26,2024-09-01,Missing
+L-101083,19443.15,0.0796,Closed,0,Gamma Collections,2023-09-22,2024-09-01,Pending
+L-100275,24671.8,0.1461,Charged Off,103,Gamma Collections,2023-04-25,2024-09-01,Available
+L-101215,137899.69,0.1442,Default,146,Alpha Servicing,2021-02-01,2024-09-01,Expired
+L-101143,226588.38,0.1289,Closed,0,Beta Loan Servicers,2025-08-24,2024-09-01,Available
+L-101026,65524.18,0.0955,Charged Off,171,Beta Loan Servicers,2026-01-13,2024-09-01,Missing
+L-100998,16458.19,0.0575,Late (31-120 days),181,Delta Financial,2021-10-03,2024-09-01,Pending
+L-100294,133753.77,0.1126,Fully Paid,0,Gamma Collections,2021-03-15,2024-09-01,Expired
+L-100958,20921.65,0.1124,Current,0,Alpha Servicing,2021-06-25,2024-09-01,Available
+L-100738,44042.02,0.1132,Current,0,Delta Financial,2022-03-20,2024-09-01,Missing
+L-100612,93395.74,0.1369,Fully Paid,0,Alpha Servicing,2023-02-03,2024-09-01,Pending
+L-101516,157954.96,0.1005,Closed,0,Beta Loan Servicers,2023-11-19,2024-09-01,Missing
+L-100564,124826.32,0.0412,Current,0,Alpha Servicing,2022-08-08,2024-09-01,Missing
+L-100290,9125.31,0.0726,Fully Paid,0,Gamma Collections,2024-12-15,2024-09-01,Available
+L-100341,7211.54,0.1148,Late (16-30 days),18,Gamma Collections,2020-06-14,2024-09-01,Missing
+L-101203,356975.95,0.0385,Charged Off,64,Delta Financial,2021-04-30,2024-09-01,Expired
+L-100882,76019.75,0.0581,Late (16-30 days),18,Gamma Collections,2019-08-12,2024-09-01,Expired
+L-100157,133238.67,0.0423,Closed,0,Beta Loan Servicers,2020-09-03,2024-09-01,Available
+L-101406,180688.63,0.1113,Default,138,Delta Financial,2020-05-12,2024-09-01,Missing
+L-101433,98617.63,0.0358,Late (16-30 days),20,Gamma Collections,2019-07-20,2024-09-01,Available
+L-101134,59401.62,0.0943,Charged Off,113,Gamma Collections,2024-10-30,2024-09-01,Missing
+L-101980,184438.02,0.039,Closed,0,Delta Financial,2020-07-04,2024-09-01,Pending
+L-101417,209733.02,0.1481,Late (31-120 days),157,Delta Financial,2022-09-07,2024-09-01,Available
+L-100083,73163.92,0.1493,Closed,0,Gamma Collections,2020-11-24,2024-09-01,Available
+L-100848,104465.43,0.0504,Charged Off,165,Alpha Servicing,2020-11-08,2024-09-01,Available
+L-101243,28813.35,0.0408,Late (16-30 days),29,Beta Loan Servicers,2022-11-05,2024-09-01,Available
+L-101983,227061.48,0.0913,Fully Paid,0,Beta Loan Servicers,2023-05-27,2024-09-01,Available
+L-101218,88361.55,0.136,Charged Off,172,Beta Loan Servicers,2020-01-07,2024-09-01,Available
+L-101693,102248.9,0.102,Charged Off,171,Beta Loan Servicers,2022-02-01,2024-09-01,Pending
+L-101098,200440.26,0.1063,Current,0,Beta Loan Servicers,2025-11-11,2024-09-01,Expired
+L-100957,25079.96,0.1394,Fully Paid,0,Delta Financial,2024-01-29,2024-09-01,Expired
+L-101604,33464.59,0.0517,Current,0,Beta Loan Servicers,2026-07-08,2024-09-01,Available
+L-101391,91033.75,0.1346,Late (31-120 days),151,Delta Financial,2024-01-08,2024-09-01,Missing
+L-100475,71373.3,0.0634,Default,108,Delta Financial,2020-10-02,2024-09-01,Available
+L-101321,13859.33,0.0608,Late (31-120 days),32,Beta Loan Servicers,2023-03-11,2024-09-01,Expired
+L-101077,147983.6,0.0559,Current,0,Beta Loan Servicers,2023-01-02,2024-09-01,Expired
+L-100884,279961.38,0.043,Default,58,Delta Financial,2019-02-12,2024-09-01,Pending
+L-101607,85618.38,0.0885,Late (16-30 days),26,Beta Loan Servicers,2023-10-07,2024-09-01,Expired
+L-101886,358214.27,0.0427,Closed,0,Delta Financial,2025-02-08,2024-09-01,Missing
+L-101819,129131.58,0.107,Closed,0,Gamma Collections,2023-08-27,2024-09-01,Available
+L-100071,6157.33,0.0511,Current,0,Delta Financial,2024-03-05,2024-09-01,Available
+L-100126,115446.64,0.0566,Late (31-120 days),70,Beta Loan Servicers,2023-03-01,2024-09-01,Missing
+L-100778,191552.55,0.0574,Default,149,Gamma Collections,2026-02-26,2024-09-01,Expired
+L-101639,37516.52,0.1454,Closed,0,Delta Financial,2020-03-27,2024-09-01,Missing
+L-100980,164458.25,0.0994,Late (31-120 days),42,Gamma Collections,2024-05-20,2024-09-01,Available
+L-101848,144128.5,0.0559,Fully Paid,0,Gamma Collections,2024-10-28,2024-09-01,Missing
+L-100625,285021.04,0.1026,Charged Off,93,Delta Financial,2025-08-23,2024-09-01,Pending
+L-100849,69960.87,0.064,Closed,0,Delta Financial,2020-11-07,2024-09-01,Expired
+L-101863,113814.98,0.0339,Charged Off,86,Beta Loan Servicers,2025-01-26,2024-09-01,
+L-101795,80725.38,0.0463,Late (16-30 days),24,Gamma Collections,2024-07-07,2024-09-01,Missing
+L-100414,193857.17,0.0868,Fully Paid,0,Delta Financial,2018-11-08,2024-09-01,Missing
+L-101196,130593.42,0.1014,Current,0,Alpha Servicing,2022-03-05,2024-09-01,Available
+L-100076,78877.37,0.0481,Charged Off,196,Beta Loan Servicers,2023-03-28,2024-09-01,Expired
+L-100503,9156.55,0.0987,Default,154,Delta Financial,2024-08-19,2024-09-01,
+L-100332,148266.02,0.0812,Late (31-120 days),46,Delta Financial,2020-01-08,2024-09-01,Pending
+L-999613,161582.7,0.0594,Charged Off,154,Delta Financial,2025-03-12,2024-09-01,Expired
+L-101775,203820.93,0.1268,Late (31-120 days),117,Gamma Collections,2022-07-27,2024-09-01,Expired
+L-100179,51851.01,0.047,Late (31-120 days),200,Delta Financial,2020-05-23,2024-09-01,Pending
+L-100526,6761.44,0.0961,Fully Paid,0,Alpha Servicing,2026-08-14,2024-09-01,Expired
+L-100506,151043.92,0.0992,Fully Paid,0,Alpha Servicing,2025-10-06,2024-09-01,Available
+L-100113,187829.18,0.0787,Fully Paid,0,Alpha Servicing,2020-10-07,2024-09-01,Pending
+L-100397,2088.06,0.0688,Fully Paid,0,Delta Financial,2025-04-13,2024-09-01,Available
+L-100182,2849.05,0.1132,Current,0,Delta Financial,2023-01-28,2024-09-01,Expired
+L-101114,32320.44,0.0368,Fully Paid,0,Alpha Servicing,2020-01-22,2024-09-01,Missing
+L-101426,19884.96,0.103,Charged Off,165,Beta Loan Servicers,2024-06-29,2024-09-01,Available
+L-100388,24301.98,0.1268,Default,86,Beta Loan Servicers,2023-12-13,2024-09-01,Pending
+L-101160,407025.44,0.0381,Fully Paid,0,Gamma Collections,2022-04-24,2024-09-01,Available
+L-101680,188856.02,0.0475,Charged Off,150,Beta Loan Servicers,2023-06-04,2024-09-01,Available
+L-100489,98543.88,0.1454,Late (31-120 days),125,Gamma Collections,2024-10-27,2024-09-01,Expired
+L-100495,99500.23,0.0526,Default,178,Alpha Servicing,2020-03-15,2024-09-01,Missing
+L-101764,214811.52,0.0769,Closed,0,Beta Loan Servicers,2019-12-11,2024-09-01,Missing
+L-100040,157260.83,0.139,Charged Off,56,Beta Loan Servicers,2024-07-02,2024-09-01,Available
+L-100161,93689.42,0.1438,Default,133,Alpha Servicing,2020-01-12,2024-09-01,Available
+L-101974,119909.76,0.0317,Fully Paid,0,Gamma Collections,2020-02-09,2024-09-01,Available
+L-100229,11286.23,0.0345,Charged Off,89,Gamma Collections,2020-01-13,2024-09-01,Expired
+L-101948,14127.64,0.1043,Fully Paid,0,Delta Financial,2025-05-20,2024-09-01,Pending
+L-101041,45710.88,0.131,Late (16-30 days),19,Delta Financial,2020-01-22,2024-09-01,Missing
+L-100538,312183.5,0.1474,Default,145,Delta Financial,2023-05-06,2024-09-01,Expired
+L-101369,105975.06,0.0655,Default,55,Gamma Collections,2025-02-15,2024-09-01,Available
+L-100043,244295.88,0.1181,Fully Paid,0,Alpha Servicing,2025-02-19,2024-09-01,Available
+L-101864,5000.0,0.1188,Closed,23,Beta Loan Servicers,2021-01-05,2024-09-01,
+L-100724,148748.01,0.0356,Late (31-120 days),71,Alpha Servicing,2025-11-18,2024-09-01,Missing
+L-101862,6517.35,0.0831,Fully Paid,0,Delta Financial,2020-06-02,2024-09-01,Pending
+L-101997,173660.83,0.0573,Current,0,Gamma Collections,2022-02-22,2024-09-01,
+L-101089,153621.33,0.0528,Charged Off,141,Alpha Servicing,2025-01-29,2024-09-01,Pending
+L-100662,70673.32,0.1227,Current,0,Delta Financial,2019-07-22,2024-09-01,Expired
+L-100702,68811.38,0.0848,Fully Paid,0,Gamma Collections,2023-06-29,2024-09-01,Pending
+L-101071,80970.69,0.0786,Late (16-30 days),21,Alpha Servicing,2022-05-02,2024-09-01,Expired
+L-101020,224753.87,0.128,Late (16-30 days),17,Beta Loan Servicers,2020-04-03,2024-09-01,Pending
+L-100654,275659.0,0.0973,Charged Off,142,Gamma Collections,2020-06-11,2024-09-01,Pending
+L-100760,100661.32,0.1456,Default,107,Beta Loan Servicers,2020-09-16,2024-09-01,Missing
+L-100273,358795.55,0.1208,Late (31-120 days),65,Gamma Collections,2023-03-19,2024-09-01,Expired
+L-101767,172820.71,0.0682,Late (31-120 days),198,Alpha Servicing,2020-04-24,2024-09-01,Missing
+L-101925,24888.09,0.0728,Fully Paid,0,Delta Financial,2021-10-11,2024-09-01,Available
+L-100728,63068.76,0.1306,Charged Off,74,Delta Financial,2024-01-14,2024-09-01,Available
+L-100314,120374.81,0.1155,Current,0,Delta Financial,2023-05-10,2024-09-01,Expired
+L-101166,109254.47,0.0854,Late (16-30 days),17,Alpha Servicing,2018-10-17,2024-09-01,Available
+L-100804,71832.9,0.0487,Default,67,Alpha Servicing,2024-08-09,2024-09-01,Expired
+L-100213,8584.75,0.0677,Fully Paid,0,Gamma Collections,2024-02-24,2024-09-01,Missing
+L-100703,140457.58,0.0629,Fully Paid,0,Delta Financial,2022-12-21,2024-09-01,Expired
+L-100153,172005.89,0.0303,Closed,0,Alpha Servicing,2024-06-13,2024-09-01,Expired
+L-100566,23284.24,0.0517,Default,56,Delta Financial,2021-09-08,2024-09-01,Available
+L-100394,44600.62,0.0518,Charged Off,196,Beta Loan Servicers,2024-04-18,2024-09-01,Missing
+L-100843,69831.25,0.1428,Charged Off,107,Gamma Collections,2020-12-01,2024-09-01,Missing
+L-101246,2502.56,0.1315,Late (31-120 days),77,Alpha Servicing,2021-09-04,2024-09-01,Missing
+L-100936,193828.25,0.0744,Late (31-120 days),124,Alpha Servicing,2022-05-21,2024-09-01,Pending
+L-100518,26512.24,0.1307,Late (31-120 days),81,Alpha Servicing,2020-08-28,2024-09-01,Missing
+L-100709,121103.65,0.0933,Default,178,Gamma Collections,2018-12-02,2024-09-01,Available
+L-100931,10651.28,0.063,Default,187,Delta Financial,2021-05-10,2024-09-01,Expired
+L-101448,59968.02,0.0954,Fully Paid,0,Delta Financial,2021-12-14,2024-09-01,Expired
+L-101744,63880.65,0.0622,Fully Paid,0,Beta Loan Servicers,2020-06-17,2024-09-01,Pending
+L-100432,154026.05,0.0547,Default,181,Alpha Servicing,2020-10-22,2024-09-01,Expired
+L-100649,110255.48,0.1196,Late (31-120 days),137,Beta Loan Servicers,2023-10-18,2024-09-01,Available
+L-100149,5928.89,0.0646,Charged Off,60,Gamma Collections,2022-09-23,2024-09-01,
+L-100927,114650.74,0.0491,Closed,0,Gamma Collections,2021-08-14,2024-09-01,Pending
+L-101961,-500.0,0.0405,Current,0,Delta Financial,2023-04-11,2024-09-01,Expired
+L-101118,29326.86,0.1031,Late (31-120 days),78,Delta Financial,2021-11-20,2024-09-01,Expired
+L-100409,23072.15,0.0772,Charged Off,147,Delta Financial,2021-02-08,2024-09-01,Missing
+L-101903,21861.61,0.0399,Fully Paid,0,Alpha Servicing,2021-06-15,2024-09-01,Pending
+L-101748,374793.68,0.0712,Fully Paid,0,Delta Financial,2022-02-03,2024-09-01,Missing
+L-100934,96770.48,0.0468,Fully Paid,0,Beta Loan Servicers,2025-11-13,2024-09-01,Expired
+L-101459,327769.08,0.0559,Late (16-30 days),16,Delta Financial,2024-03-21,2024-09-01,Expired
+L-101769,352321.06,0.047,Late (31-120 days),59,Beta Loan Servicers,2025-09-14,2024-09-01,Expired
+L-101344,170849.04,0.0747,Charged Off,141,Delta Financial,2021-07-07,2024-09-01,Pending
+L-100494,32520.22,0.1346,Default,128,Delta Financial,2026-05-05,2024-09-01,Pending
+L-100672,121042.72,0.1087,Charged Off,160,Delta Financial,2025-03-21,2024-09-01,Expired
+L-100714,159676.84,0.0726,Late (16-30 days),27,Alpha Servicing,2024-03-02,2024-09-01,Available
+L-100813,181527.85,0.0835,Current,0,Beta Loan Servicers,2021-07-13,2024-09-01,Available
+L-100868,38209.02,0.0491,Late (16-30 days),26,Alpha Servicing,2025-02-09,2024-09-01,Missing
+L-101264,117597.43,0.1076,Charged Off,31,Delta Financial,2026-07-01,2024-09-01,Expired
+L-101782,240158.49,0.0451,Default,134,Alpha Servicing,2020-04-17,2024-09-01,Pending
+L-101772,87043.77,0.0502,Late (31-120 days),122,Gamma Collections,2020-08-25,2024-09-01,Pending
+L-101345,18294.55,0.1192,Fully Paid,0,Delta Financial,2021-09-08,2024-09-01,Available
+L-100416,68137.1,0.0539,Late (31-120 days),91,Beta Loan Servicers,2022-10-23,2024-09-01,Pending
+L-101654,365142.56,0.0619,Current,0,Beta Loan Servicers,2021-04-08,2024-09-01,Missing
+L-101111,78299.76,0.1399,Late (16-30 days),29,Gamma Collections,2020-01-08,2024-09-01,Expired
+L-101458,394904.23,0.1095,Fully Paid,0,Gamma Collections,2023-10-09,2024-09-01,Pending
+L-101649,230484.4,0.0598,Current,0,Gamma Collections,2020-09-20,2024-09-01,Available
+L-101177,412097.99,0.0893,Fully Paid,0,Alpha Servicing,2023-06-25,2024-09-01,Pending
+L-100727,22865.86,0.0631,Charged Off,57,Delta Financial,2020-02-12,2024-09-01,Available
+L-101455,66534.82,0.079,Default,74,Alpha Servicing,2019-10-17,2024-09-01,Missing
+L-101524,12812.01,0.0806,Late (31-120 days),82,Gamma Collections,2021-04-21,2024-09-01,Expired
+L-101833,120369.43,0.0526,Current,0,Gamma Collections,2023-11-02,2024-09-01,Missing
+L-101996,217365.66,0.0434,Current,0,Delta Financial,2019-06-21,2024-09-01,Pending
+L-101360,48152.56,0.0791,Late (31-120 days),181,Beta Loan Servicers,2019-03-18,2024-09-01,Expired
+L-100512,200834.84,0.0631,Fully Paid,0,Alpha Servicing,2025-08-29,2024-09-01,Pending
+L-100139,143971.36,0.4623421404265058,Fully Paid,0,Alpha Servicing,2022-11-02,2024-09-01,Missing
+L-100950,21291.36,0.1446,Current,0,Delta Financial,2020-08-25,2024-09-01,Available
+L-101338,19833.15,0.1059,Current,109,Alpha Servicing,2021-06-20,2024-09-01,Missing
+L-101093,198375.37,0.074,Default,131,Gamma Collections,2020-04-30,2024-09-01,Pending
+L-100288,19466.3,-0.03543176520186896,Fully Paid,0,Alpha Servicing,2022-06-29,2024-09-01,Pending
+L-100669,256971.39,0.1147,Closed,0,Beta Loan Servicers,2021-08-02,2024-09-01,Expired
+L-101397,306352.84,0.0509,Current,0,Delta Financial,2022-02-19,2024-09-01,Available
+L-100792,29272.11,0.1358,Charged Off,32,Gamma Collections,2024-05-04,2024-09-01,Expired
+L-100094,92126.89,0.066,Current,112,Gamma Collections,2023-05-28,2024-09-01,Missing
+L-101418,65565.62,0.0936,Closed,0,Beta Loan Servicers,2023-10-08,2024-09-01,Missing
+L-101932,85411.53,0.0597,Late (31-120 days),39,Beta Loan Servicers,2022-12-24,2024-09-01,Available
+L-101228,147074.34,0.0596,Closed,0,Alpha Servicing,2021-10-22,2024-09-01,Missing
+L-101258,109287.99,0.1397,Late (16-30 days),22,Gamma Collections,2020-10-23,2024-09-01,Missing
+L-101535,209990.88,0.1147,Late (31-120 days),123,Alpha Servicing,2022-12-28,2024-09-01,Missing
+L-101194,210606.27,0.1339,Current,0,Beta Loan Servicers,2023-01-17,2024-09-01,Pending
+L-100227,267543.21,0.1045,Default,96,Gamma Collections,2023-02-24,2024-09-01,Expired
+L-101587,87665.65,0.0471,Late (16-30 days),17,Gamma Collections,2024-11-09,2024-09-01,Missing
+L-101505,53260.04,0.1148,Closed,0,Beta Loan Servicers,2024-06-22,2024-09-01,Available
+L-100885,69400.81,0.0834,Late (16-30 days),22,Gamma Collections,2024-03-03,2024-09-01,Available
+L-100264,319127.28,0.0512,Charged Off,194,Gamma Collections,2025-08-14,2024-09-01,Missing
+L-100540,127994.49,0.0993,Late (31-120 days),31,Beta Loan Servicers,2024-10-12,2024-09-01,Expired
+L-100869,273858.76,0.0992,Current,0,Delta Financial,2023-04-01,2024-09-01,Pending
+L-101234,207227.97,0.0749,Current,0,Beta Loan Servicers,2021-08-20,2024-09-01,Pending
+L-100627,309124.72,0.0459,Default,173,Beta Loan Servicers,2024-12-01,2024-09-01,Pending
+L-101298,194970.84,0.0479,Fully Paid,0,Delta Financial,2020-11-27,2024-09-01,Expired
+L-100963,321372.06,0.0331,Charged Off,72,Delta Financial,2021-08-21,2024-09-01,Available
+L-100862,27762.44,0.1065,Closed,0,Delta Financial,2025-05-22,2024-09-01,Pending
+L-101441,238055.63,0.1089,Late (31-120 days),127,Alpha Servicing,2019-06-03,2024-09-01,Available
+L-100344,312024.13,0.0511,Late (16-30 days),27,Delta Financial,2020-03-24,2024-09-01,Missing
+L-101212,399844.91,0.0523,Default,95,Beta Loan Servicers,2024-01-13,2024-09-01,Expired
+L-100401,54888.35,0.0861,Fully Paid,0,Delta Financial,2021-06-02,2024-09-01,Missing
+L-100805,4385.88,0.0549,Default,61,Delta Financial,2022-11-15,2024-09-01,Expired
+L-101641,102765.48,0.1496,Fully Paid,0,Beta Loan Servicers,2022-12-05,2024-09-01,Expired
+L-101400,126027.03,0.1386,Late (16-30 days),17,Delta Financial,2019-02-19,2024-09-01,Missing
+L-101099,187929.21,0.0478,Charged Off,41,Gamma Collections,2024-02-08,2024-09-01,Pending
+L-100581,5000.0,0.0524,Closed,98,Alpha Servicing,2021-11-18,2024-09-01,Expired
+L-100281,24197.84,0.0487,Late (31-120 days),107,Alpha Servicing,2025-06-01,2024-09-01,Missing
+L-100883,247412.02,0.4507016812304725,Fully Paid,0,Alpha Servicing,2020-10-08,2024-09-01,Expired
+L-101075,116320.37,0.1482,Late (31-120 days),78,Alpha Servicing,2019-08-11,2024-09-01,Missing
+L-100741,138236.53,0.0444,Fully Paid,0,Beta Loan Servicers,2020-03-18,2024-09-01,Missing
+L-100239,115705.59,0.1303,Late (31-120 days),119,Delta Financial,2024-07-11,2024-09-01,Available
+L-100993,112512.34,0.0945,Late (16-30 days),19,Alpha Servicing,2024-01-10,2024-09-01,Pending
+L-101208,165176.73,0.0418,Charged Off,56,Gamma Collections,2019-12-14,2024-09-01,Expired
+L-100937,-500.0,0.0645,Fully Paid,0,Alpha Servicing,2020-09-19,2024-09-01,Available
+L-100391,98212.01,0.0827,Closed,0,Alpha Servicing,2023-09-22,2024-09-01,Expired
+L-100889,180854.17,0.0827,Fully Paid,0,Beta Loan Servicers,2019-12-31,2024-09-01,Available
+L-100985,398691.45,0.1158,Current,0,Gamma Collections,2022-08-14,2024-09-01,Pending
+L-101156,162316.25,0.0354,Charged Off,75,Beta Loan Servicers,2021-11-13,2024-09-01,Expired
+L-101488,173146.08,0.0753,Current,0,Beta Loan Servicers,2024-07-06,2024-09-01,Available
+L-101241,85858.79,0.1216,Late (31-120 days),149,Alpha Servicing,2018-11-19,2024-09-01,Available
+L-100099,94140.85,0.0787,Default,137,Delta Financial,2022-10-09,2024-09-01,Missing
+L-100185,208295.3,0.0965,Late (16-30 days),17,Alpha Servicing,2022-11-24,2024-09-01,Available
+L-100008,68810.0,0.0395,Late (16-30 days),26,Delta Financial,2023-06-03,2024-09-01,Expired
+L-100268,28933.88,0.0826,Default,86,Gamma Collections,2021-05-06,2024-09-01,Expired
+L-101341,92697.44,0.0616,Closed,0,Beta Loan Servicers,2023-10-10,2024-09-01,Expired
+L-101012,287569.42,0.1431,Current,0,Delta Financial,2020-10-09,2024-09-01,Expired
+,1814.95,0.1263,Late (31-120 days),148,Delta Financial,2024-06-03,2024-09-01,Available
+L-101242,146399.37,0.0684,Default,142,Beta Loan Servicers,2025-02-09,2024-09-01,Pending
+L-101554,27903.97,0.0729,Fully Paid,0,Gamma Collections,2023-06-01,2024-09-01,Expired
+L-100119,124243.69,0.0514,Closed,0,Alpha Servicing,2021-02-06,2024-09-01,Expired
+L-101799,366313.68,0.0415,Default,189,Beta Loan Servicers,2022-09-30,2024-09-01,Pending
+L-101877,136879.71,0.0441,Current,105,Delta Financial,2021-05-30,2024-09-01,Available
+L-101270,136795.12,0.0346,Late (31-120 days),180,Alpha Servicing,2020-02-25,2024-09-01,Pending
+L-100640,169506.83,0.0735,Closed,0,Beta Loan Servicers,2022-11-07,2024-09-01,Pending
+L-101475,180282.2,0.1284,Default,176,Alpha Servicing,2021-03-22,2024-09-01,Missing
+L-101517,149185.17,0.1491,Charged Off,93,Delta Financial,2022-06-05,2024-09-01,Expired
+L-101384,179354.49,0.1177,Late (31-120 days),124,Gamma Collections,2024-09-15,2024-09-01,Missing
+L-100260,115437.18,0.0885,Default,192,Beta Loan Servicers,2022-06-22,2024-09-01,Pending
+L-100018,38537.14,0.1147,Charged Off,40,Gamma Collections,2021-03-07,2024-09-01,Missing
+L-100384,43887.52,0.105,Current,0,Beta Loan Servicers,2024-07-21,2024-09-01,Expired
+L-101105,150342.05,0.1385,Current,115,Delta Financial,2020-11-10,2024-09-01,Expired
+L-101352,5000.0,0.1201,Closed,180,Beta Loan Servicers,2024-02-17,2024-09-01,Expired
+L-100930,326399.02,0.0842,Current,0,Gamma Collections,2026-05-31,2024-09-01,Expired
+L-100325,178037.31,-0.031215081825009233,Late (31-120 days),155,Alpha Servicing,2021-05-10,2024-09-01,Pending
+L-100206,261931.14,0.075,Charged Off,43,Alpha Servicing,2021-04-18,2024-09-01,Available
+L-100263,47112.17,0.0641,Current,0,Alpha Servicing,2020-11-20,2024-09-01,Pending
+L-100254,15239.19,0.1404,Closed,0,Alpha Servicing,2023-04-05,2024-09-01,Pending
+L-101588,84770.85,0.0436,Current,102,Alpha Servicing,2020-05-27,2024-09-01,Pending
+L-100748,128043.86,0.1052,Current,0,Delta Financial,2019-11-22,2024-09-01,Expired
+L-101304,5000.0,0.0523,Closed,19,Beta Loan Servicers,2023-03-16,2024-09-01,
+L-100154,96829.84,0.0979,Current,0,Delta Financial,2021-09-30,2024-09-01,Missing
+L-101716,43393.37,0.3949407203564143,Charged Off,168,Gamma Collections,2021-01-01,2024-09-01,Pending
+L-100084,255320.63,0.0323,Current,0,Gamma Collections,2024-01-04,2024-09-01,Available
+L-101661,-500.0,0.0732,Current,107,Delta Financial,2024-06-10,2024-09-01,Expired
+L-101984,237794.88,-0.012058023892264264,Late (16-30 days),21,Beta Loan Servicers,2024-06-11,2024-09-01,Expired
+L-100720,78274.58,0.0806,Fully Paid,0,Alpha Servicing,2026-02-20,2024-09-01,Available
+L-101497,78594.13,0.1179,Closed,0,Gamma Collections,2019-10-07,2024-09-01,Pending
+L-100783,261857.63,0.0871,Fully Paid,0,Beta Loan Servicers,2023-03-25,2024-09-01,Missing
+L-100351,115035.58,0.1419,Default,124,Delta Financial,2022-02-20,2024-09-01,Pending
+L-100624,41445.61,0.099,Default,111,Alpha Servicing,2025-11-27,2024-09-01,Expired
+L-101480,1856.67,0.1089,Current,0,Beta Loan Servicers,2021-10-17,2024-09-01,Expired
+L-100554,102692.27,0.0556,Closed,0,Gamma Collections,2020-09-21,2024-09-01,Missing
+L-100854,159807.21,0.0303,Late (31-120 days),199,Gamma Collections,2023-08-13,2024-09-01,Missing
+L-101410,138996.7,0.1296,Closed,0,Beta Loan Servicers,2020-07-02,2024-09-01,Missing
+L-100374,246347.6,0.0426,Late (16-30 days),22,Delta Financial,2022-01-15,2024-09-01,Missing
+L-100308,157305.06,0.0337,Late (16-30 days),25,Alpha Servicing,2024-06-21,2024-09-01,Pending
+L-100073,69958.9,0.0707,Charged Off,161,Beta Loan Servicers,2026-07-01,2024-09-01,Missing
+L-100192,126585.63,0.0673,Late (16-30 days),20,Delta Financial,2024-06-05,2024-09-01,Expired
+L-100800,110340.5,0.0497,Late (31-120 days),194,Gamma Collections,2020-03-19,2024-09-01,Expired
+L-100689,43776.91,0.121,Default,199,Gamma Collections,2023-04-15,2024-09-01,Expired
+L-100870,82046.58,0.1367,Current,0,Alpha Servicing,2023-11-01,2024-09-01,Pending
+L-100835,62281.64,0.0741,Default,107,Gamma Collections,2019-07-26,2024-09-01,Missing
+L-100444,35181.11,0.1165,Late (31-120 days),32,Delta Financial,2024-03-08,2024-09-01,Available
+L-101294,144135.96,0.1305,Closed,0,Beta Loan Servicers,2025-09-05,2024-09-01,Available
+L-100482,137289.34,0.07,Current,0,Alpha Servicing,2023-09-04,2024-09-01,Expired
+L-101232,196377.56,0.0838,Fully Paid,0,Gamma Collections,2020-07-22,2024-09-01,Available
+L-100434,121182.53,0.0418,Closed,0,Alpha Servicing,2020-04-06,2024-09-01,Missing
+L-101388,91678.22,0.0943,Late (31-120 days),186,Gamma Collections,2020-03-14,2024-09-01,Available
+L-101857,103329.84,0.0568,Charged Off,175,Delta Financial,2020-07-23,2024-09-01,Expired
+L-100074,20202.69,0.1211,Default,175,Delta Financial,2022-11-11,2024-09-01,Pending
+L-101068,166474.2,0.0961,Charged Off,158,Alpha Servicing,2020-08-12,2024-09-01,Missing
+L-100318,99243.2,0.1447,Late (31-120 days),157,Alpha Servicing,2021-12-25,2024-09-01,Missing
+L-100589,253976.96,0.0631,Closed,0,Alpha Servicing,2023-01-04,2024-09-01,Pending
+L-100386,15519.12,0.0595,Default,196,Alpha Servicing,2023-03-14,2024-09-01,Missing
+L-101498,245130.41,0.1384,Current,0,Beta Loan Servicers,2023-09-06,2024-09-01,Available
+L-100269,363953.42,0.0367,Late (16-30 days),19,Gamma Collections,2024-01-28,2024-09-01,Available
+L-100784,128864.13,0.0761,Default,185,Gamma Collections,2023-07-16,2024-09-01,Missing
+L-100262,310803.21,0.0396,Default,171,Alpha Servicing,2020-10-14,2024-09-01,Available
+L-100661,20873.21,0.0514,Closed,0,Beta Loan Servicers,2020-05-02,2024-09-01,
+L-100492,38527.58,0.0472,Late (16-30 days),23,Alpha Servicing,2020-01-20,2024-09-01,Expired
+L-101379,50033.56,0.1239,Late (16-30 days),20,Delta Financial,2020-12-04,2024-09-01,Available
+,13342.74,0.1386,Charged Off,147,Beta Loan Servicers,2019-10-08,2024-09-01,Pending
+L-100187,-500.0,0.0743,Late (31-120 days),88,Gamma Collections,2020-09-07,2024-09-01,Available
+L-101730,226626.38,0.0392,Current,0,Delta Financial,2025-11-05,2024-09-01,Pending
+L-101936,196620.77,0.1365,Current,0,Beta Loan Servicers,2022-07-09,2024-09-01,Expired
+L-100481,288187.75,0.1252,Charged Off,168,Beta Loan Servicers,2025-04-19,2024-09-01,Expired
+L-100109,55753.11,0.142,Late (16-30 days),16,Beta Loan Servicers,2025-03-30,2024-09-01,Available
+L-101317,114814.34,0.0667,Default,37,Gamma Collections,2021-10-07,2024-09-01,Expired
+L-101630,95525.05,0.0918,Current,0,Delta Financial,2022-10-26,2024-09-01,Available
+L-100642,48428.33,0.0624,Current,0,Alpha Servicing,2024-05-26,2024-09-01,Expired
+L-100641,298194.82,0.0932,Late (16-30 days),20,Gamma Collections,2018-04-20,2024-09-01,Missing
+L-101219,79958.48,0.1196,Late (16-30 days),26,Delta Financial,2021-02-28,2024-09-01,Available
+L-101549,73959.51,0.0993,Late (31-120 days),62,Gamma Collections,2023-08-04,2024-09-01,Missing
+L-101079,9110.41,0.0445,Default,127,Gamma Collections,2020-11-29,2024-09-01,Pending
+L-101650,306781.65,0.0472,Late (31-120 days),47,Alpha Servicing,2022-03-27,2024-09-01,Pending
+L-100134,214613.48,0.0403,Current,0,Gamma Collections,2023-05-10,2024-09-01,Missing
+L-101377,109805.62,0.034,Late (31-120 days),67,Alpha Servicing,2025-02-16,2024-09-01,Pending
+L-100560,370666.54,0.0425,Default,190,Alpha Servicing,2023-01-13,2024-09-01,Available
+L-101942,69006.49,0.1011,Fully Paid,0,Alpha Servicing,2020-07-28,2024-09-01,Pending
+L-100125,248075.14,0.1231,Late (31-120 days),97,Gamma Collections,2021-10-24,2024-09-01,Available
+L-100289,48316.1,0.1472,Late (16-30 days),19,Delta Financial,2022-12-08,2024-09-01,Missing
+,3138.01,0.1282,Closed,0,Gamma Collections,2020-11-20,2024-09-01,Expired
+L-101830,49209.31,0.0779,Late (31-120 days),133,Delta Financial,2023-10-24,2024-09-01,Expired
+L-100609,149839.89,0.035,Default,153,Gamma Collections,2021-03-06,2024-09-01,Available
+L-101766,171190.69,0.0327,Charged Off,132,Delta Financial,2022-04-24,2024-09-01,Missing
+L-101724,111155.49,0.1024,Fully Paid,0,Beta Loan Servicers,2022-06-12,2024-09-01,Expired
+L-100100,195336.87,0.0427,Late (16-30 days),18,Alpha Servicing,2022-09-11,2024-09-01,Expired
+L-100999,5000.0,0.0969,Closed,99,Alpha Servicing,2023-12-08,2024-09-01,Pending
+L-100573,308141.68,0.1269,Fully Paid,0,Delta Financial,2020-02-16,2024-09-01,Missing
+L-100755,16727.48,0.13,Default,188,Gamma Collections,2024-07-26,2024-09-01,Available
+L-101561,67125.72,0.0937,Closed,0,Gamma Collections,2020-11-08,2024-09-01,Available
+L-101527,277564.46,0.1002,Current,0,Delta Financial,2021-03-16,2024-09-01,Available
+L-101229,82480.57,0.1018,Current,0,Alpha Servicing,2020-04-18,2024-09-01,Expired
+L-101579,25496.03,0.05,Closed,0,Beta Loan Servicers,2022-08-24,2024-09-01,Pending
+L-101852,85298.15,0.0887,Default,124,Beta Loan Servicers,2021-04-06,2024-09-01,Missing
+L-100505,13652.06,0.1083,Current,0,Gamma Collections,2022-08-17,2024-09-01,Available
+L-100377,171419.63,0.0891,Charged Off,97,Gamma Collections,2021-06-06,2024-09-01,Available
+L-101055,33733.91,0.1318,Fully Paid,0,Gamma Collections,2021-10-26,2024-09-01,
+L-100110,4087.14,0.1415,Closed,0,Gamma Collections,2020-02-09,2024-09-01,Available
+L-101951,71161.75,0.1266,Fully Paid,0,Beta Loan Servicers,2023-07-16,2024-09-01,Expired
+L-101310,210427.23,0.0549,Late (31-120 days),188,Gamma Collections,2023-12-02,2024-09-01,Pending
+L-101157,297132.75,0.0945,Default,99,Beta Loan Servicers,2019-05-25,2024-09-01,Available
+L-101245,314108.28,0.0806,Late (16-30 days),25,Alpha Servicing,2025-09-21,2024-09-01,Available
+L-100953,106976.84,0.1015,Default,114,Beta Loan Servicers,2021-07-10,2024-09-01,Missing
+L-100050,58872.03,0.0698,Current,0,Beta Loan Servicers,2024-10-13,2024-09-01,Expired
+L-101786,19572.79,0.0736,Current,100,Gamma Collections,2021-03-25,2024-09-01,Expired

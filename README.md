@@ -5,11 +5,12 @@
 
 LoanTrace is an AI-powered FinTech application designed to help Data Operators and Reviewers ingest, validate, and verify loan data from conflicting sources.
 
-## Phase 1: Foundation (Current Status)
-The project is currently in the Foundation phase.
-*   **Frontend**: Next.js (App Router), Tailwind CSS, shadcn/ui.
-*   **Backend**: FastAPI, SQLAlchemy, PostgreSQL.
-*   **Auth**: JWT-based RBAC with three roles (Data Operator, Reviewer, Data Consumer).
+## Phase 2: Ingestion & Validation (Current Status)
+The project is currently in Phase 2.
+*   **Data Foundation**: Capable of generating deterministic synthetic loan data with intentional anomalies.
+*   **Ingestion Pipeline**: Upload endpoint parses CSV files, preserves raw lineage, and attempts schema normalization.
+*   **Validation Engine**: A deterministic Python rules engine executes configurable data quality and cross-source checks.
+*   **Frontend**: A Data Operator dashboard supports file selection, ingestion, and displays import summaries.
 
 ## Local Development Setup
 
@@ -17,6 +18,12 @@ The project is currently in the Foundation phase.
 *   Docker & Docker Compose (for PostgreSQL)
 *   Python 3.12+
 *   Node.js 20+
+
+### 0. Generate Synthetic Data
+```bash
+python scripts/generate_synthetic_data.py
+```
+This generates `data/loan_tape.csv`, `servicer_update.csv`, and others with deterministic 2,000+ records containing specific anomalies (negative balances, missing IDs, conflicting tape/servicer data).
 
 ### 1. Database Start
 From the project root:

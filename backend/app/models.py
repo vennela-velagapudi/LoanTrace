@@ -14,41 +14,84 @@ class UploadBatch(Base):
     __tablename__ = "upload_batches"
     id = Column(Integer, primary_key=True, index=True)
     filename = Column(String)
+    source_type = Column(String) # loan_tape, servicer_update, document_manifest
     uploaded_at = Column(DateTime(timezone=True), server_default=func.now())
-    uploaded_by = Column(Integer, ForeignKey("users.id"))
+    uploaded_by = Column(Integer, ForeignKey("users.id"), nullable=True)
     status = Column(String, default="UPLOADED")
 
-class NormalizedLoan(Base):
-    __tablename__ = "normalized_loans"
+class RawRecord(Base):
+    __tablename__ = "raw_records"
     id = Column(Integer, primary_key=True, index=True)
     batch_id = Column(Integer, ForeignKey("upload_batches.id"))
-    
-    # Required Challenge Fields
-    loan_id = Column(String, index=True)
-    borrower_id = Column(String, index=True)
-    loan_type = Column(String)
-    origination_date = Column(Date)
-    maturity_date = Column(Date)
-    original_principal = Column(Float)
-    current_balance = Column(Float)
-    interest_rate = Column(Float)
-    term_months = Column(Integer)
-    borrower_state = Column(String)
-    loan_purpose = Column(String)
-    credit_grade = Column(String)
-    employment_length = Column(String)
-    income_band = Column(String)
-    payment_status = Column(String)
-    days_past_due = Column(Integer)
-    servicer_name = Column(String)
-    last_payment_date = Column(Date)
-    last_updated_at = Column(Date)
-    document_status = Column(String)
-    source_system = Column(String)
+    row_index = Column(Integer)
+    row_data = Column(JSON)
+    loan_id = Column(String, index=True, nullable=True) # Soft link
 
-    # Conflicting Source Fields (for validation)
+class NormalizedLoan(Base):
+    """
+    Acts as the canonical view of a loan, aggregating fields from loan_tape, servicer_update, and document_manifest.
+    """
+    __tablename__ = "normalized_loans"
+    id = Column(Integer, primary_key=True, index=True)
+    loan_id = Column(String, index=True, nullable=True)
+    
+    # Track the primary raw record
+    raw_record_id = Column(Integer, ForeignKey("raw_records.id"), nullable=True)
+    batch_id = Column(Integer, ForeignKey("upload_batches.id"), nullable=True)
+    
+    # ------------------------------------------------
+    # LOAN TAPE FIELDS
+    # ------------------------------------------------
+    borrower_id = Column(String, index=True, nullable=True)
+    loan_type = Column(String, nullable=True)
+    origination_date = Column(Date, nullable=True)
+    maturity_date = Column(Date, nullable=True)
+    original_principal = Column(Float, nullable=True)
+    current_balance = Column(Float, nullable=True)
+    interest_rate = Column(Float, nullable=True)
+    term_months = Column(Integer, nullable=True)
+    borrower_state = Column(String, nullable=True)
+    loan_purpose = Column(String, nullable=True)
+    credit_grade = Column(String, nullable=True)
+    employment_length = Column(String, nullable=True)
+    income_band = Column(String, nullable=True)
+    payment_status = Column(String, nullable=True)
+    days_past_due = Column(Integer, nullable=True)
+    servicer_name = Column(String, nullable=True)
+    last_payment_date = Column(Date, nullable=True)
+    last_updated_at = Column(Date, nullable=True)
+    document_status = Column(String, nullable=True)
+    source_system = Column(String, nullable=True)
+
+    # ------------------------------------------------
+    # SERVICER UPDATE OVERLAPPING FIELDS
+    # ------------------------------------------------
     servicer_update_current_balance = Column(Float, nullable=True)
+    servicer_update_interest_rate = Column(Float, nullable=True)
     servicer_update_payment_status = Column(String, nullable=True)
+    servicer_update_days_past_due = Column(Integer, nullable=True)
+    servicer_update_servicer_name = Column(String, nullable=True)
+    servicer_update_last_payment_date = Column(Date, nullable=True)
+    servicer_update_last_updated_at = Column(Date, nullable=True)
+    servicer_update_document_status = Column(String, nullable=True)
+
+    # ------------------------------------------------
+    # DOCUMENT MANIFEST FIELDS
+    # ------------------------------------------------
+    manifest_document_status = Column(String, nullable=True)
+
+class ValidationRun(Base):
+    __tablename__ = "validation_runs"
+    id = Column(Integer, primary_key=True, index=True)
+    batch_id = Column(Integer, ForeignKey("upload_batches.id"), nullable=True)
+    run_time = Column(DateTime(timezone=True), server_default=func.now())
+
+class ValidationResult(Base):
+    __tablename__ = "validation_results"
+    id = Column(Integer, primary_key=True, index=True)
+    run_id = Column(Integer, ForeignKey("validation_runs.id"))
+    normalized_loan_id = Column(Integer, ForeignKey("normalized_loans.id"))
+    is_valid = Column(Boolean)
 
 class ValidationRule(Base):
     __tablename__ = "validation_rules"
@@ -61,13 +104,17 @@ class ValidationRule(Base):
 class ExceptionModel(Base):
     __tablename__ = "exceptions"
     id = Column(Integer, primary_key=True, index=True)
-    loan_id = Column(Integer, ForeignKey("normalized_loans.id"))
-    rule_id = Column(Integer, ForeignKey("validation_rules.id"))
+    validation_result_id = Column(Integer, ForeignKey("validation_results.id"), nullable=True)
+    normalized_loan_id = Column(Integer, ForeignKey("normalized_loans.id"))
+    rule_name = Column(String, nullable=True)
     severity = Column(String)
+    field = Column(String, nullable=True)
+    actual_value = Column(String, nullable=True)
+    expected_condition = Column(String, nullable=True)
     description = Column(String)
     status = Column(String, default="OPEN")
-    ai_recommendation = Column(JSON, nullable=True)
-
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    
 class VerifiedLoan(Base):
     __tablename__ = "verified_loans"
     id = Column(Integer, primary_key=True, index=True)

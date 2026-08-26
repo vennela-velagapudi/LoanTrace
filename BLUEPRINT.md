@@ -131,18 +131,18 @@ RBAC, parameterized queries (SQLModel), no exposed secrets, explicit audit trail
 
 | Req Area | Description | Implementation Target | Phase Status |
 | :--- | :--- | :--- | :--- |
-| A | Data Ingestion | `backend/services/ingestion.py` | Planned (Phase 2) |
-| B | Validation Engine | `backend/services/validation.py` | Planned (Phase 2) |
-| C | Exception Queue | `backend/api/exceptions.py` | Planned (Phase 3) |
+| A | Data Ingestion | `backend/services/ingestion.py` | Implemented (Phase 2) |
+| B | Validation Engine | `backend/services/validation.py` | Implemented (Phase 2) |
+| C | Exception Queue | `backend/api/exceptions.py` | Implemented API Shells (Phase 2) |
 | D | AI Review Assistant | `backend/services/ai.py` | Planned (Phase 4) |
 | E | Verified Record | `verified_loans` DB table | Implemented Foundation (Phase 1) |
 | F | Audit Trail | `audit_logs` DB table, explicit logging | Implemented Foundation (Phase 1) |
-| G | Dashboards | Next.js `/operator`, `/reviewer`, `/consumer` | Implemented Shells (Phase 1) |
-| H | APIs | FastAPI endpoints | Implemented Shells (Phase 1) |
+| G | Dashboards | Next.js `/operator`, `/reviewer`, `/consumer` | Implemented Upload UI (Phase 2) |
+| H | APIs | FastAPI endpoints | Implemented (Phase 2) |
 | I | AI Controls | UI separation, audit flag | Planned (Phase 4) |
 | J | Tech Requirements | Python, Next.js, Postgres | Implemented (Phase 1) |
-| K | Deliverables | GitHub repo, Docs | Implemented Base (Phase 1) |
-| L | Agentic Log | `docs/AI_DEVELOPMENT_LOG.md` | Created (Phase 1) |
+| K | Deliverables | GitHub repo, Docs | Implemented Base (Phase 1 & 2) |
+| L | Agentic Log | `docs/AI_DEVELOPMENT_LOG.md` | Updated (Phase 2) |
 
 ## 22. Ambiguities, Risks & Trade-offs
 *   **Storage**: Moved to an abstraction to avoid mandatory S3 dependency.
