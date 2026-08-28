@@ -51,16 +51,14 @@ export async function apiFetch(endpoint: string, options: RequestInit = {}) {
     ...(token ? { Authorization: `Bearer ${token}` } : {})
   };
 
-  const res = await fetch(`http://localhost:8000${endpoint}`, {
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+  const res = await fetch(`${API_URL}${endpoint}`, {
     ...options,
     headers,
   });
 
   if (res.status === 401 || res.status === 403) {
-    // Optionally trigger a logout or redirect event here, but we will handle it in the UI layers
     if (typeof window !== "undefined" && window.location.pathname !== "/login") {
-      // In a real app, you might want to redirect. But we will let components handle 401s for smoother UX
-      // window.location.href = "/login";
     }
   }
 

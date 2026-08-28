@@ -148,3 +148,9 @@ RBAC, parameterized queries (SQLModel), no exposed secrets, explicit audit trail
 *   **Storage**: Moved to an abstraction to avoid mandatory S3 dependency.
 *   **Audit**: Relying on explicit service calls over DB triggers ensures business context is captured.
 *   **Verified Mutability**: Verified records are strictly immutable. Corrections require new versions.
+
+## Phase 6 Deployment & Polish
+- Configured Next.js frontend to securely load NEXT_PUBLIC_API_URL instead of hardcoded localhost strings, supporting edge deployment on Vercel.
+- Refactored FastAPI backend CORS and config.py to ingest FRONTEND_URL and GEMINI_API_KEY from environment context, supporting PaaS deployment (Render, AWS).
+- Completely overhauled README.md and DEMO_SCRIPT.md to reflect a seamless, role-based, end-to-end FinTech presentation.
+- Verified full data immutability and append-only ledgers via rigorous code review.

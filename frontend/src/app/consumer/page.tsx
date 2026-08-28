@@ -39,7 +39,8 @@ export default function ConsumerDashboard() {
   }, [router]);
 
   const handleExport = () => {
-    window.location.href = "http://localhost:8000/api/verified-loans/export";
+    const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+    window.location.href = `${API_URL}/api/verified-loans/export`;
   };
 
   if (!summary) return <div className="p-8 text-white">Loading Dashboard...</div>;

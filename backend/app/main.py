@@ -5,11 +5,15 @@ from sqlalchemy.orm import Session
 from app.database import get_db, engine
 from app.api import auth, loans, exceptions, verified_loans, audit, summary, files, validation, ai
 
+from app.core.config import settings
+
 app = FastAPI(title="LoanTrace API")
+
+origins = [origin.strip() for origin in settings.FRONTEND_URL.split(",")]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

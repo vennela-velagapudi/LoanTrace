@@ -1,62 +1,119 @@
-# LoanTrace
+# LoanTrace 🏦✨
 
-**Challenge**: Intain Campus FinTech Challenge 2026 — Full Stack Track
-**Problem**: Loan Data Verification Copilot
+**LoanTrace** is an AI-powered financial data quality and verification copilot built for the Intain Campus FinTech Challenge 2026. 
 
-LoanTrace is an AI-powered FinTech application designed to help Data Operators and Reviewers ingest, validate, and verify loan data from conflicting sources.
+## The Problem
+Financial institutions regularly ingest loan data from multiple, often conflicting sources (e.g., originators, servicers, and document repositories). This raw data is frequently messy, incomplete, or logically inconsistent. Traditionally, resolving these discrepancies requires armies of analysts manually comparing spreadsheets, tracking emails, and updating central databases, leading to slow processing times, high operational costs, and unverifiable data provenance.
 
-## Phase 5: Verified Records & Data Consumer Workflow (Current Status)
-The project has completed Phase 5.
-*   **Data Foundation**: Capable of generating deterministic synthetic loan data with intentional anomalies.
-*   **Ingestion Pipeline**: Upload endpoint parses CSV files, preserves raw lineage, and attempts schema normalization.
-*   **Validation Engine**: A deterministic Python rules engine executes configurable data quality and cross-source checks.
-*   **Reviewer Workflow**: Reviewers can review queue items, patch canonical data safely, and approve/reject/request correction.
-*   **Audit Trail**: Highly secure append-only audit trail implemented for all mutations.
-*   **Authentication**: Frontend fully wired to FastAPI backend utilizing JWT and RBAC.
-*   **AI Review Assistant**: Fully integrated `google-genai` service for anomaly explanation, suggestions, cross-source conflict resolution, note generation, batch summaries, and natural language rule generation.
-*   **Verified Immutable Ledger**: Verified records receive a deterministic SHA-256 hash. Data Consumer dashboard accesses read-only immutable ledgers and exports them.
+## The Solution
+LoanTrace automates the ingestion, normalization, and deterministic validation of complex loan portfolios. When exceptions are flagged, the platform's **AI Review Assistant** (powered by Gemini) acts as a specialized copilot for human reviewers, explaining anomalies, comparing conflicting cross-source records, suggesting mathematical corrections, and generating professional resolution notes. Once a record is fully resolved, it is cryptographically hashed via SHA-256 and committed to an immutable verified ledger.
 
-## Local Development Setup
+---
 
-### Prerequisites
-*   Docker & Docker Compose (for PostgreSQL)
-*   Python 3.12+
-*   Node.js 20+
+## 🏛️ Architecture & Tech Stack
 
-### 0. Generate Synthetic Data
+### Frontend
+*   **Framework**: Next.js (React) App Router
+*   **Styling**: Tailwind CSS (Dark-first FinTech UI, Glassmorphism)
+*   **Icons**: Lucide React
+*   **Deployment**: Ready for Vercel
+
+### Backend
+*   **Framework**: FastAPI (Python)
+*   **Database ORM**: SQLAlchemy & Alembic
+*   **AI Integration**: Google GenAI SDK (`gemini-2.5-flash`)
+*   **Security**: JWT Authentication, Server-Side RBAC, Pytest suite
+*   **Deployment**: Ready for Render / AWS
+
+### Core Workflows
+1. **Data Ingestion**: Parses `loan_tape.csv`, `servicer_update.csv`, and `document_manifest.csv` into a canonical schema while preserving raw JSON lineage.
+2. **Validation Engine**: Deterministic Python rules engine executes schema, boundary, logic, and cross-source conflict checks.
+3. **AI Copilot**: Gemini provides context-aware explanations, suggests corrections, and proposes natural language validation rules. Includes a graceful fallback mock for keyless demonstrations.
+4. **Immutable Ledger**: Clean records are verified, hashed (SHA-256), and made available to downstream consumers.
+5. **Audit Trail**: Every human and AI action triggers an append-only JSON-b audit event.
+
+---
+
+## 👥 Role-Based Access Control (RBAC)
+The application enforces strict server-side and client-side routing based on three distinct roles:
+*   **Data Operator** (`operator` / `demo123`): Responsible for uploading raw data batches and reviewing high-level validation results.
+*   **Reviewer** (`reviewer` / `demo123`): Responsible for resolving exceptions, utilizing the AI Assistant, editing canonical data, and finalizing verification.
+*   **Data Consumer** (`consumer` / `demo123`): Accesses the read-only Verified Ledger, data quality scores, complete audit trails, and exports CSVs.
+
+---
+
+## 🚀 Local Development Setup
+
+### 1. Environment Variables
+Create a `.env` file in the `backend/` directory:
+```env
+DATABASE_URL=sqlite:///./local_schema.db
+# For production PostgreSQL: DATABASE_URL=postgresql://postgres:password@localhost:5432/loantrace
+
+SECRET_KEY=YOUR_SUPER_SECRET_JWT_KEY
+ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=30
+FRONTEND_URL=http://localhost:3000
+GEMINI_API_KEY=your_gemini_api_key_here
+```
+*(Note: If `GEMINI_API_KEY` is omitted, the AI Assistant gracefully degrades into a deterministic mock mode suitable for offline demos).*
+
+Create a `.env` file in the `frontend/` directory:
+```env
+NEXT_PUBLIC_API_URL=http://localhost:8000
+```
+
+### 2. Generate Synthetic Demo Data
+Generate a deterministic dataset with intentional financial anomalies (2,000+ records):
 ```bash
 python scripts/generate_synthetic_data.py
 ```
-This generates `data/loan_tape.csv`, `servicer_update.csv`, and others with deterministic 2,000+ records containing specific anomalies (negative balances, missing IDs, conflicting tape/servicer data).
+This populates the `data/` folder with `loan_tape.csv`, `servicer_update.csv`, and `document_manifest.csv`.
 
-### 1. Database Start
-From the project root:
-```bash
-docker-compose up -d
-```
-
-### 2. Backend Setup
+### 3. Backend Setup
 ```bash
 cd backend
 python -m venv venv
-# Activate venv: `venv\Scripts\activate` on Windows or `source venv/bin/activate` on Mac/Linux
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
-cp .env.example .env
 alembic upgrade head
-uvicorn app.main:app --reload
+uvicorn app.main:app --reload --port 8000
 ```
-The API will be available at `http://localhost:8000`.
 
-### 3. Frontend Setup
+### 4. Frontend Setup
 ```bash
 cd frontend
 npm install
-cp .env.example .env.local
 npm run dev
 ```
-The frontend will be available at `http://localhost:3000`.
+Navigate to `http://localhost:3000`.
 
-### Test Credentials
-*   **Operator**: username: `operator`, password: `demo123`
-*   **Reviewer**: username: `reviewer`, password: `demo123`
-*   **Consumer**: username: `consumer`, password: `demo123`
+### 5. Running Tests
+```bash
+cd backend
+pytest tests/
+```
+
+---
+
+## 🌍 Deployment Instructions
+
+LoanTrace is architected as a stateless application with a persistent relational database, making it highly suitable for modern PaaS providers.
+
+**Database (PostgreSQL via Neon/Render/AWS RDS)**:
+1. Provision a PostgreSQL 15+ instance.
+2. Obtain the connection string.
+
+**Backend (Render / Railway / Heroku)**:
+1. Connect your repository to the PaaS.
+2. Set Build Command: `pip install -r requirements.txt && alembic upgrade head`
+3. Set Start Command: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
+4. Inject Environment Variables: `DATABASE_URL`, `SECRET_KEY`, `FRONTEND_URL`, `GEMINI_API_KEY`.
+
+**Frontend (Vercel)**:
+1. Connect your repository to Vercel.
+2. Set Root Directory to `frontend`.
+3. Vercel will automatically detect Next.js and apply build settings (`npm run build`).
+4. Inject Environment Variable: `NEXT_PUBLIC_API_URL` pointing to your deployed backend URL.
+
+*(Note: Currently, LoanTrace is running locally. No public URL has been configured).*
