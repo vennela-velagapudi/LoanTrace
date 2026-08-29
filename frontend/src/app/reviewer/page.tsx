@@ -59,8 +59,8 @@ export default function ReviewerDashboard() {
           <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl p-4 shadow-sm">
             <h3 className="text-sm font-medium text-[var(--muted-foreground)] mb-1">Open</h3>
             <p className="text-3xl font-bold text-orange-400">
-              {exceptions.filter(e => e.status === "OPEN").length}
-            </p>
+  		{summary.open_exceptions}
+	    </p>
           </div>
           <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl p-4 shadow-sm">
             <h3 className="text-sm font-medium text-[var(--muted-foreground)] mb-1">In Review</h3>
@@ -71,8 +71,8 @@ export default function ReviewerDashboard() {
           <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl p-4 shadow-sm">
             <h3 className="text-sm font-medium text-[var(--muted-foreground)] mb-1">Resolved</h3>
             <p className="text-3xl font-bold text-green-400">
-              {exceptions.filter(e => e.status === "RESOLVED").length}
-            </p>
+  		{summary.resolved_exceptions}
+	    </p>
           </div>
         </div>
       )}
