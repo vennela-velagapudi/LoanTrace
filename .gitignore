@@ -1,4 +1,4 @@
-﻿venv/
+venv/
 */venv/
 __pycache__/
 *.py[cod]
@@ -9,3 +9,5 @@ node_modules/
 !.env.example
 local_schema.db
 *.db
+*.sqlite
+*.sqlite3

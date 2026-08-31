@@ -6,14 +6,14 @@ This document outlines the complete architecture, technical stack, and implement
 
 *   **Frontend**: Next.js (App Router), TypeScript, Tailwind CSS, shadcn/ui. (Delivers a polished, modern FinTech visual identity efficiently).
 *   **Backend**: Python 3.12+, FastAPI. (High performance, excellent async support, native Pydantic validation, and industry-standard for AI integrations).
-*   **Database**: PostgreSQL. (Relational integrity is crucial for financial data. JSONB support for flexible raw data/audit logs).
+*   **Database**: SQLite. (Relational integrity is crucial for financial data. JSONB support for flexible raw data/audit logs).
 *   **ORM**: SQLModel (or SQLAlchemy 2.0). (Seamless integration with FastAPI and Pydantic).
 *   **AI Integration**: Google Gemini API (via direct SDK or LangChain). (Used for the AI Review Assistant).
 *   **Authentication/Authorization**: Custom JWT-based auth via FastAPI OAuth2. (Simplifies provisioning the exact 3 required test roles without relying on external SaaS limits during the competition).
 *   **File Handling**: An abstract FileStorage service. Defaults to local file system for development, with the ability to plug in S3/Supabase Storage for production deployment. S3 is not a mandatory dependency.
 *   **Validation**: Pydantic for schema validation + a custom Python-based Rules Engine for business logic.
 *   **Testing**: Pytest (Backend), Jest/React Testing Library (Frontend).
-*   **Deployment**: Vercel (Frontend), Render or Railway (Backend), Neon.tech (Serverless Postgres).
+*   **Deployment**: Vercel (Frontend), Render or Railway (Backend), Local SQLite.
 
 ## 2. Complete System Architecture
 
@@ -29,7 +29,7 @@ The system follows a modern decoupled architecture:
     *   `AI Review Service`: Interfaces with the LLM, providing context (loan data, rule failed) and returning structured recommendations.
     *   `Verification Service`: Finalizes approved records, generates cryptographic hashes, and commits to the verified ledger.
     *   `Audit Service`: A cross-cutting dependency explicitly called by business workflows to record actions. (Database events may supplement this, but explicit calls ensure context).
-4.  **Data Layer (Postgres + File System/Blob)**: Relational tables for state, JSONB for unstructured data/logs, File Storage abstraction for CSVs.
+4.  **Data Layer (SQLite + File System/Blob)**: Relational tables for state, JSONB for unstructured data/logs, File Storage abstraction for CSVs.
 
 ## 3. Proposed Folder/Repository Structure
 
@@ -104,7 +104,7 @@ Dark-first FinTech theme. `operator/`, `reviewer/`, `consumer/` route shells.
 Supports all fields and intentional issues (overlapping conflicts, missing IDs, financial logic errors).
 
 ## 16. Deployment Architecture
-Render (Backend), Vercel (Frontend), Neon (Postgres). Storage abstracted.
+Render (Backend), Vercel (Frontend), SQLite. Storage abstracted.
 
 ## 17. Testing Strategy
 Pytest (Backend Unit/API), Jest (Frontend).
@@ -140,7 +140,7 @@ RBAC, parameterized queries (SQLModel), no exposed secrets, explicit audit trail
 | G | Dashboards | Next.js `/operator`, `/reviewer`, `/consumer` | Implemented Upload UI (Phase 2) |
 | H | APIs | FastAPI endpoints | Implemented (Phase 2) |
 | I | AI Controls | UI separation, audit flag | Planned (Phase 4) |
-| J | Tech Requirements | Python, Next.js, Postgres | Implemented (Phase 1) |
+| J | Tech Requirements | Python, Next.js, SQLite | Implemented (Phase 1) |
 | K | Deliverables | GitHub repo, Docs | Implemented Base (Phase 1 & 2) |
 | L | Agentic Log | `docs/AI_DEVELOPMENT_LOG.md` | Updated (Phase 2) |
 
