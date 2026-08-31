@@ -25,7 +25,17 @@ class ExceptionLoggingMiddleware(BaseHTTPMiddleware):
                 f.write(traceback.format_exc())
             return PlainTextResponse("Middleware caught exception", status_code=500)
 
+class NoCacheMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request: Request, call_next):
+        response = await call_next(request)
+        if request.method in ["GET", "OPTIONS"]:
+            response.headers["Cache-Control"] = "no-store, no-cache, must-revalidate, max-age=0"
+            response.headers["Pragma"] = "no-cache"
+            response.headers["Expires"] = "0"
+        return response
+
 app.add_middleware(ExceptionLoggingMiddleware)
+app.add_middleware(NoCacheMiddleware)
 
 origins = [origin.strip() for origin in settings.FRONTEND_URL.split(",")]
 
