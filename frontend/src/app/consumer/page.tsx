@@ -38,12 +38,27 @@ export default function ConsumerDashboard() {
     fetchData();
   }, [router]);
 
-  const handleExport = () => {
-    let API_URL = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000";
-    if (API_URL.includes("localhost:8000") || API_URL.includes(":8001") || API_URL.includes(":8002") || API_URL.includes(":8004")) {
-      API_URL = "http://127.0.0.1:8000";
+  const handleExport = async () => {
+    try {
+      const res = await apiFetch("/api/verified-loans/export");
+      if (!res.ok) {
+        console.error("Export failed:", await res.text());
+        return;
+      }
+      
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.style.display = "none";
+      a.href = url;
+      a.download = "verified_loans.csv";
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+    } catch (e) {
+      console.error(e);
     }
-    window.location.href = `${API_URL}/api/verified-loans/export`;
   };
 
   if (!summary) return <div className="p-4 sm:p-8 text-slate-900">Loading Dashboard...</div>;

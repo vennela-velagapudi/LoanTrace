@@ -1,0 +1,19 @@
+Traceback (most recent call last):
+  File "C:\Users\Vennela Velagapudi\OneDrive\Desktop\LoanTrace\backend\app\api\files.py", line 21, in upload_file
+    ingest_result = await run_in_threadpool(ingest_csv, db, decoded, filename)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vennela Velagapudi\OneDrive\Desktop\LoanTrace\backend\venv\Lib\site-packages\starlette\concurrency.py", line 34, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vennela Velagapudi\OneDrive\Desktop\LoanTrace\backend\venv\Lib\site-packages\anyio\to_thread.py", line 65, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vennela Velagapudi\OneDrive\Desktop\LoanTrace\backend\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 2641, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\Users\Vennela Velagapudi\OneDrive\Desktop\LoanTrace\backend\venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 1033, in run
+    result = context.run(func, *args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Vennela Velagapudi\OneDrive\Desktop\LoanTrace\backend\app\services\ingestion.py", line 52, in ingest_csv
+    print(f"[Timer] Read CSV: {time.time() - start_t:.2f}s", flush=True)
+OSError: [Errno 22] Invalid argument
