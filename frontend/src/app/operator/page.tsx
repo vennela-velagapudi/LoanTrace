@@ -1,16 +1,16 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { apiFetch, getToken, getUserRole } from "@/lib/auth";
 
 type UploadSummary = {
   filename: string;
   total_rows: number;
-  successful_rows: number;
-  failed_rows: number;
+  normalized_count: number;
+  failed_count: number;
   exceptions_created: number;
-  status: string;
+  status?: string;
 };
 
 export default function OperatorDashboard() {
@@ -28,9 +28,69 @@ export default function OperatorDashboard() {
       router.push("/login");
     }
   }, [router]);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  
+  // Password Change State
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [pwdMsg, setPwdMsg] = useState("");
+  const [pwdError, setPwdError] = useState("");
+  const [isChangingPwd, setIsChangingPwd] = useState(false);
+
+  const handleChangePassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setPwdError("");
+    setPwdMsg("");
+    
+    if (newPassword !== confirmPassword) {
+      setPwdError("New passwords do not match");
+      return;
+    }
+    
+    setIsChangingPwd(true);
+    try {
+      const res = await apiFetch("/api/auth/change-password", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ current_password: currentPassword, new_password: newPassword }),
+      });
+      
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.detail || "Failed to change password");
+      }
+      
+      setPwdMsg("Password changed successfully.");
+      setCurrentPassword("");
+      setNewPassword("");
+      setConfirmPassword("");
+    } catch (err: any) {
+      setPwdError(err.message);
+    } finally {
+      setIsChangingPwd(false);
+    }
+  };
   const [uploading, setUploading] = useState(false);
   const [summary, setSummary] = useState<UploadSummary | null>(null);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    const fetchLatestSummary = async () => {
+      try {
+        const res = await apiFetch("/api/files/latest/summary");
+        if (res.ok) {
+          const data = await res.json();
+          if (data && data.filename) {
+            setSummary(data);
+          }
+        }
+      } catch (err) {
+        console.error("Failed to fetch latest summary", err);
+      }
+    };
+    fetchLatestSummary();
+  }, []);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -67,8 +127,8 @@ export default function OperatorDashboard() {
   };
 
   return (
-    <div className="p-8">
-      <div className="flex justify-between items-center mb-8">
+    <div className="p-4 sm:p-8">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0 mb-6 sm:mb-8">
         <h1 className="text-3xl font-bold tracking-tight">Data Operator Dashboard</h1>
       </div>
 
@@ -86,26 +146,35 @@ export default function OperatorDashboard() {
             type="file" 
             accept=".csv"
             onChange={handleFileChange}
-            className="mb-4 text-sm text-[var(--muted-foreground)]
-              file:mr-4 file:py-2 file:px-4
-              file:rounded-full file:border-0
-              file:text-sm file:font-semibold
-              file:bg-[var(--secondary)] file:text-white
-              hover:file:bg-[var(--muted)] relative z-10"
+            ref={fileInputRef}
+            className="hidden"
+            id="fileInput"
           />
+          <div className="flex flex-col items-center gap-2 mb-6 relative z-10 w-full max-w-xs">
+            <button 
+              type="button"
+              onClick={() => fileInputRef.current?.click()}
+              className="w-full px-4 py-2 bg-slate-100 hover:bg-slate-200 border border-slate-300 text-slate-800 rounded-md cursor-pointer font-medium shadow-sm transition-colors text-sm"
+            >
+              Choose File
+            </button>
+            <span className="text-xs text-slate-500 max-w-full truncate px-2 text-center pointer-events-none">
+              {file ? file.name : "No file chosen"}
+            </span>
+          </div>
 
           <button 
             onClick={handleUpload}
             disabled={!file || uploading}
             className={`px-6 py-2 rounded-md font-medium transition-colors relative z-10 w-full max-w-xs ${
-              !file || uploading ? 'bg-gray-700 text-gray-400 cursor-not-allowed' : 'bg-primary hover:bg-blue-600 text-white shadow-[0_0_15px_rgba(59,130,246,0.4)]'
+              !file || uploading ? 'bg-slate-200 text-slate-500 cursor-not-allowed' : 'bg-[var(--primary)] hover:bg-blue-700 text-white shadow-sm cursor-pointer'
             }`}
           >
             {uploading ? "Uploading & Processing..." : "Start Ingestion"}
           </button>
 
           {error && (
-            <div className="mt-4 p-3 bg-red-950/50 border border-red-900 text-red-200 rounded-md text-sm w-full max-w-xs relative z-10">
+            <div className="mt-4 p-3 bg-red-50 border border-red-200 text-red-700 rounded-md text-sm w-full max-w-xs relative z-10">
               {error}
             </div>
           )}
@@ -117,14 +186,14 @@ export default function OperatorDashboard() {
           
           {!summary && !uploading && (
             <div className="flex-1 flex flex-col items-center justify-center text-[var(--muted-foreground)]">
-              <span className="text-4xl mb-4 opacity-20">📊</span>
+              <div className="text-4xl mb-4 opacity-50">📊</div>
               <p>Upload a file to see the ingestion and validation results.</p>
             </div>
           )}
 
           {uploading && (
             <div className="flex-1 flex flex-col items-center justify-center text-[var(--primary)]">
-              <div className="w-8 h-8 border-4 border-[var(--primary)] border-t-transparent rounded-full animate-spin mb-4 shadow-[0_0_10px_rgba(59,130,246,0.5)]"></div>
+              <div className="w-8 h-8 border-4 border-[var(--primary)] border-t-transparent rounded-full animate-spin mb-4"></div>
               <p className="animate-pulse">Processing records...</p>
             </div>
           )}
@@ -137,7 +206,7 @@ export default function OperatorDashboard() {
               </div>
               <div className="flex justify-between items-center p-3 bg-[var(--secondary)] rounded-lg">
                 <span className="text-[var(--muted-foreground)]">Status</span>
-                <span className="font-semibold text-green-400">{summary.status}</span>
+                <span className="font-semibold text-[var(--success)]">{summary.status}</span>
               </div>
               <div className="flex justify-between items-center p-3 bg-[var(--secondary)] rounded-lg">
                 <span className="text-[var(--muted-foreground)]">Total Rows</span>
@@ -145,15 +214,15 @@ export default function OperatorDashboard() {
               </div>
               <div className="flex justify-between items-center p-3 bg-[var(--secondary)] rounded-lg">
                 <span className="text-[var(--muted-foreground)]">Successful Normalizations</span>
-                <span className="font-bold text-green-400">{summary.successful_rows}</span>
+                <span className="font-bold text-[var(--success)]">{summary.normalized_count}</span>
               </div>
-              <div className="flex justify-between items-center p-3 bg-red-950/30 border border-red-900/30 rounded-lg">
-                <span className="text-[var(--muted-foreground)]">Failed Rows (Malformed)</span>
-                <span className="font-bold text-red-400">{summary.failed_rows}</span>
+              <div className="flex justify-between items-center p-3 bg-red-50 border border-red-200 rounded-lg">
+                <span className="text-slate-600">Failed Rows (Malformed)</span>
+                <span className="font-bold text-red-600">{summary.failed_count}</span>
               </div>
-              <div className="flex justify-between items-center p-3 bg-purple-950/30 border border-purple-900/30 rounded-lg">
-                <span className="text-[var(--muted-foreground)]">Validation Exceptions Generated</span>
-                <span className="font-bold text-[var(--accent)]">{summary.exceptions_created}</span>
+              <div className="flex justify-between items-center p-3 bg-indigo-50 border border-indigo-200 rounded-lg">
+                <span className="text-slate-600">Validation Exceptions Generated</span>
+                <span className="font-bold text-indigo-600">{summary.exceptions_created}</span>
               </div>
             </div>
           )}

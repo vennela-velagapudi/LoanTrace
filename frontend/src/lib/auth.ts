@@ -51,7 +51,10 @@ export async function apiFetch(endpoint: string, options: RequestInit = {}) {
     ...(token ? { Authorization: `Bearer ${token}` } : {})
   };
 
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+  let API_URL = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000";
+  if (API_URL.includes("localhost:8000") || API_URL.includes(":8001") || API_URL.includes(":8002") || API_URL.includes(":8004")) {
+    API_URL = "http://127.0.0.1:8000";
+  }
   const res = await fetch(`${API_URL}${endpoint}`, {
     ...options,
     headers,
@@ -63,4 +66,27 @@ export async function apiFetch(endpoint: string, options: RequestInit = {}) {
   }
 
   return res;
+}
+
+
+
+
+export function markPasswordChanged(username: string) {
+  if (typeof window !== "undefined") {
+    try {
+      const flags = JSON.parse(localStorage.getItem("pwd_changed_flags") || "{}");
+      flags[username.toLowerCase()] = true;
+      localStorage.setItem("pwd_changed_flags", JSON.stringify(flags));
+    } catch (e) {}
+  }
+}
+
+export function hasPasswordChanged(username: string): boolean {
+  if (typeof window !== "undefined") {
+    try {
+      const flags = JSON.parse(localStorage.getItem("pwd_changed_flags") || "{}");
+      return !!flags[username.toLowerCase()];
+    } catch (e) {}
+  }
+  return false;
 }

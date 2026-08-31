@@ -37,7 +37,7 @@ export default function ExceptionDetail() {
       setData(d);
       
       if (d.loan?.loan_id) {
-        const auditRes = await apiFetch(`/api/audit/${d.loan.loan_id}`);
+        const auditRes = await apiFetch(`/api/audit/exception/${d.exception.id}`);
         if (auditRes.ok) setAuditLogs(await auditRes.json());
       }
     } catch (e) {
@@ -79,21 +79,21 @@ export default function ExceptionDetail() {
     }
   };
 
-  if (!data) return <div className="p-8 text-white">Loading...</div>;
+  if (!data) return <div className="p-4 sm:p-8 text-slate-900">Loading...</div>;
 
   const { exception, loan, raw_source, comments } = data;
 
   return (
-    <div className="p-8 max-w-[1400px] mx-auto">
-      <Link href="/reviewer" className="text-sm text-slate-400 hover:text-white mb-6 inline-block">← Back to Queue</Link>
+    <div className="p-4 sm:p-8 max-w-[1400px] mx-auto">
+      <Link href="/reviewer" className="text-sm text-slate-500 hover:text-slate-900 mb-6 inline-block">← Back to Queue</Link>
       
       <div className="flex items-center gap-4 mb-6">
-        <h1 className="text-3xl font-bold text-white">Exception EXC-{exception.id}</h1>
+        <h1 className="text-3xl font-bold text-slate-900">Exception EXC-{exception.id}</h1>
         <span className={`px-3 py-1 rounded text-sm font-semibold ${
-          exception.status === 'OPEN' ? 'bg-orange-500/20 text-orange-400 border border-orange-500/30' :
-          exception.status === 'IN_REVIEW' ? 'bg-blue-500/20 text-blue-400 border border-blue-500/30' :
-          exception.status === 'RESOLVED' ? 'bg-green-500/20 text-green-400 border border-green-500/30' :
-          'bg-gray-500/20 text-gray-400 border border-gray-500/30'
+          exception.status === 'OPEN' ? 'bg-orange-50 text-orange-700 border border-orange-200' :
+          exception.status === 'IN_REVIEW' ? 'bg-blue-50 text-blue-700 border border-blue-200' :
+          exception.status === 'RESOLVED' ? 'bg-green-50 text-green-700 border border-green-200' :
+          'bg-gray-100 text-gray-700 border border-gray-200'
         }`}>{exception.status}</span>
       </div>
 
@@ -101,66 +101,66 @@ export default function ExceptionDetail() {
         {/* Left Column: Human Details & Editing */}
         <div className="space-y-6 overflow-y-auto pr-2 h-full">
           
-          <div className="bg-slate-900 border border-slate-700 rounded-xl overflow-hidden shadow-lg">
-            <div className="p-4 border-b border-slate-800 bg-slate-800/50 font-semibold text-slate-200">
+          <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-lg">
+            <div className="p-4 border-b border-slate-200 bg-slate-50 font-semibold text-slate-900">
               Validation Failure Details
             </div>
-            <div className="p-4 grid grid-cols-2 gap-4 text-sm text-slate-300">
+            <div className="p-4 grid grid-cols-2 gap-4 text-sm text-slate-600">
               <div className="col-span-2">
-                <p className="text-slate-400 mb-1">Description</p>
-                <p className="text-white">{exception.description}</p>
+                <p className="text-slate-500 mb-1">Description</p>
+                <p className="text-slate-900">{exception.description}</p>
               </div>
               <div>
-                <p className="text-slate-400">Rule Name</p>
-                <p className="font-mono text-purple-400">{exception.rule_name}</p>
+                <p className="text-slate-500">Rule Name</p>
+                <p className="font-mono text-indigo-600">{exception.rule_name}</p>
               </div>
               <div>
-                <p className="text-slate-400">System Severity</p>
-                <p className="font-mono text-red-400">{exception.severity}</p>
+                <p className="text-slate-500">System Severity</p>
+                <p className="font-mono text-red-600">{exception.severity}</p>
               </div>
               <div>
-                <p className="text-slate-400">Affected Field</p>
-                <p className="font-mono text-blue-400">{exception.field}</p>
+                <p className="text-slate-500">Affected Field</p>
+                <p className="font-mono text-blue-600">{exception.field}</p>
               </div>
               <div>
-                <p className="text-slate-400">Expected Condition</p>
-                <p className="font-mono text-green-400">{exception.expected_condition}</p>
+                <p className="text-slate-500">Expected Condition</p>
+                <p className="font-mono text-green-600">{exception.expected_condition}</p>
               </div>
-              <div className="col-span-2 p-3 bg-red-900/20 rounded border border-red-900/50">
-                <p className="text-slate-400 mb-1">Actual Value Recorded</p>
-                <p className="font-mono text-red-400 font-bold">{exception.actual_value}</p>
+              <div className="col-span-2 p-3 bg-red-50 rounded border border-red-200">
+                <p className="text-slate-500 mb-1">Actual Value Recorded</p>
+                <p className="font-mono text-red-600 font-bold">{exception.actual_value}</p>
               </div>
             </div>
           </div>
 
-          <div className="bg-slate-900 border border-slate-700 rounded-xl overflow-hidden shadow-lg">
-            <div className="p-4 border-b border-slate-800 bg-slate-800/50 font-semibold text-slate-200">
+          <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-lg">
+            <div className="p-4 border-b border-slate-200 bg-slate-50 font-semibold text-slate-900">
               Data Comparison
             </div>
             <div className="p-4 text-sm space-y-4">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="p-3 bg-slate-800 rounded border border-slate-700">
-                  <h3 className="font-bold mb-2 text-slate-400 text-xs uppercase tracking-wider">Source Value (Loan Tape)</h3>
-                  <p className="font-mono text-slate-200">{exception.field}: {raw_source?.[exception.field] || 'null'}</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="p-3 bg-white rounded border border-slate-200">
+                  <h3 className="font-bold mb-2 text-slate-500 text-xs uppercase tracking-wider">Source Value (Loan Tape)</h3>
+                  <p className="font-mono text-slate-900">{exception.field}: {raw_source?.[exception.field] || 'null'}</p>
                 </div>
-                <div className="p-3 bg-blue-900/20 rounded border border-blue-900/50">
-                  <h3 className="font-bold mb-2 text-blue-400 text-xs uppercase tracking-wider">Canonical Value (Normalized)</h3>
-                  <p className="font-mono text-slate-200">{exception.field}: {loan?.[exception.field] || 'null'}</p>
+                <div className="p-3 bg-blue-50 rounded border border-blue-200">
+                  <h3 className="font-bold mb-2 text-blue-600 text-xs uppercase tracking-wider">Canonical Value (Normalized)</h3>
+                  <p className="font-mono text-slate-900">{exception.field}: {loan?.[exception.field] || 'null'}</p>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="bg-slate-900 border border-slate-700 rounded-xl overflow-hidden shadow-lg">
-            <div className="p-4 border-b border-slate-800 bg-slate-800/50 font-semibold text-slate-200">
+          <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-lg">
+            <div className="p-4 border-b border-slate-200 bg-slate-50 font-semibold text-slate-900">
               Edit Canonical Field (Human Decision)
             </div>
-            <div className="p-4 space-y-4 text-sm text-slate-300">
-              <div className="grid grid-cols-2 gap-4">
+            <div className="p-4 space-y-4 text-sm text-slate-600">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block mb-1 text-slate-400">Field</label>
+                  <label className="block mb-1 text-slate-500">Field</label>
                   <select 
-                    className="w-full bg-slate-800 border border-slate-600 rounded px-3 py-2 text-white"
+                    className="w-full bg-white border border-slate-300 rounded px-3 py-2 text-slate-900"
                     value={editField}
                     onChange={(e) => {
                       setEditField(e.target.value);
@@ -172,10 +172,10 @@ export default function ExceptionDetail() {
                   </select>
                 </div>
                 <div>
-                  <label className="block mb-1 text-slate-400">New Value</label>
+                  <label className="block mb-1 text-slate-500">New Value</label>
                   <input 
                     type="text" 
-                    className="w-full bg-slate-800 border border-slate-600 rounded px-3 py-2 text-white"
+                    className="w-full bg-white border border-slate-300 rounded px-3 py-2 text-slate-900"
                     value={editValue}
                     onChange={(e) => setEditValue(e.target.value)}
                     disabled={!editField}
@@ -183,10 +183,10 @@ export default function ExceptionDetail() {
                 </div>
               </div>
               <div>
-                <label className="block mb-1 text-slate-400">Reason for Edit</label>
+                <label className="block mb-1 text-slate-500">Reason for Edit</label>
                 <input 
                   type="text" 
-                  className="w-full bg-slate-800 border border-slate-600 rounded px-3 py-2 text-white"
+                  className="w-full bg-white border border-slate-300 rounded px-3 py-2 text-slate-900"
                   value={editReason}
                   onChange={(e) => setEditReason(e.target.value)}
                   disabled={!editField}
@@ -202,14 +202,14 @@ export default function ExceptionDetail() {
             </div>
           </div>
 
-          <div className="bg-slate-900 border border-slate-700 rounded-xl overflow-hidden shadow-lg border-l-4 border-l-purple-500">
-            <div className="p-4 border-b border-slate-800 bg-slate-800/50 font-semibold text-slate-200">
+          <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-lg border-l-4 border-l-purple-500">
+            <div className="p-4 border-b border-slate-200 bg-slate-50 font-semibold text-slate-900">
               Final Review Action (Human Decision)
             </div>
             <div className="p-4 space-y-3 text-sm">
               {exception.status === "OPEN" && (
                 <button 
-                  className="w-full py-2 bg-slate-700 hover:bg-slate-600 text-white rounded mb-4"
+                  className="w-full py-2 w-full py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-300 rounded mb-4"
                   onClick={() => handleAction('/assign', 'PATCH', { user_id: 2 })}
                 >
                   Assign to Me & Start Review
@@ -217,13 +217,13 @@ export default function ExceptionDetail() {
               )}
               
               <textarea
-                className="w-full bg-slate-800 border border-slate-600 rounded px-3 py-2 h-20 text-white"
+                className="w-full bg-white border border-slate-300 rounded px-3 py-2 h-20 text-slate-900"
                 placeholder="Decision reason..."
                 value={decisionReason}
                 onChange={e => setDecisionReason(e.target.value)}
               />
               
-              <div className="grid grid-cols-2 gap-3 mt-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
                 <button 
                   className="py-2 bg-green-600 hover:bg-green-700 text-white font-semibold rounded shadow disabled:opacity-50"
                   disabled={!decisionReason}
@@ -247,7 +247,7 @@ export default function ExceptionDetail() {
                 Request Correction
               </button>
               
-              <div className="mt-6 pt-4 border-t border-slate-700">
+              <div className="mt-6 pt-4 border-t border-slate-200">
                 <button 
                   className="w-full py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded shadow"
                   onClick={async () => {
@@ -267,7 +267,7 @@ export default function ExceptionDetail() {
                 >
                   Finalize & Verify Loan Record
                 </button>
-                <p className="text-xs text-slate-400 mt-2 text-center">Verification creates an immutable hashed record. All exceptions must be resolved first.</p>
+                <p className="text-xs text-slate-500 mt-2 text-center">Verification creates an immutable hashed record. All exceptions must be resolved first.</p>
               </div>
             </div>
           </div>
@@ -280,17 +280,17 @@ export default function ExceptionDetail() {
             <AIAssistantPanel exception={exception} onRefresh={fetchData} />
           </div>
 
-          <div className="bg-slate-900 border border-slate-700 rounded-xl overflow-hidden shadow-lg h-64 flex flex-col">
-            <div className="p-3 border-b border-slate-800 bg-slate-800/50 font-semibold text-slate-200">
+          <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-lg h-64 flex flex-col">
+            <div className="p-3 border-b border-slate-200 bg-slate-50 font-semibold text-slate-900">
               Audit Timeline & Comments
             </div>
-            <div className="p-3 overflow-y-auto flex-1 text-sm text-slate-300">
-              <div className="space-y-4 relative before:absolute before:inset-0 before:ml-2 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-700 before:to-transparent">
+            <div className="p-3 overflow-y-auto flex-1 text-sm text-slate-600">
+              <div className="space-y-4 relative before:absolute before:inset-0 before:ml-2 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-300 before:to-transparent">
                 {auditLogs.map((log, i) => (
                   <div key={log.id} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active text-xs">
-                    <div className="flex items-center justify-center w-3 h-3 rounded-full border border-slate-500 bg-slate-700 group-[.is-active]:bg-purple-500 shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow" />
-                    <div className="w-[calc(100%-2rem)] md:w-[calc(50%-1.5rem)] p-2 rounded border border-slate-700 bg-slate-800/50">
-                      <div className="font-bold text-slate-200">{log.action}</div>
+                    <div className="flex items-center justify-center w-3 h-3 rounded-full border border-slate-300 bg-slate-100 group-[.is-active]:bg-purple-500 shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow" />
+                    <div className="w-[calc(100%-2rem)] md:w-[calc(50%-1.5rem)] p-2 rounded border border-slate-200 bg-slate-50">
+                      <div className="font-bold text-slate-900">{log.action}</div>
                       <div className="text-slate-500">{new Date(log.timestamp).toLocaleTimeString()}</div>
                     </div>
                   </div>

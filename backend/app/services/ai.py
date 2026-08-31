@@ -26,9 +26,13 @@ class AIConflictAnalysis(BaseModel):
 class AIReviewerNote(BaseModel):
     note: str = Field(description="A concise professional reviewer note.")
 
+class SeverityCount(BaseModel):
+    severity: str
+    count: int
+
 class AIBatchSummary(BaseModel):
     total_exceptions_analyzed: int
-    severity_distribution: Dict[str, int] = Field(description="Count of each severity level.")
+    severity_distribution: List[SeverityCount] = Field(description="Count of each severity level.")
     most_common_rules: List[str] = Field(description="List of the most violated rules.")
     patterns: str = Field(description="Recurring patterns or data quality issues.")
     recommendations: str = Field(description="Recommended review priorities.")
@@ -103,7 +107,11 @@ class AIReviewService:
         elif schema == AIBatchSummary:
             return schema(
                 total_exceptions_analyzed=100,
-                severity_distribution={"CRITICAL": 10, "HIGH": 40, "WARNING": 50},
+                severity_distribution=[
+                    SeverityCount(severity="CRITICAL", count=10),
+                    SeverityCount(severity="HIGH", count=40),
+                    SeverityCount(severity="WARNING", count=50)
+                ],
                 most_common_rules=["negative_balance", "missing_document_status"],
                 patterns="[Demo AI] Many exceptions relate to missing document statuses and inconsistent payment DPDs.",
                 recommendations="[Demo AI] Prioritize resolving CRITICAL negative balance issues first."

@@ -42,6 +42,8 @@ def load_validation_config():
         }
 
 def run_validation(db: Session, batch_id: int = None):
+    import time
+    start_t = time.time()
     config = load_validation_config()
     
     run = ValidationRun(batch_id=batch_id)
@@ -49,65 +51,96 @@ def run_validation(db: Session, batch_id: int = None):
     db.commit()
     db.refresh(run)
 
-    loans = db.query(NormalizedLoan).all()
+    query = db.query(NormalizedLoan)
+    if batch_id:
+        query = query.filter(NormalizedLoan.batch_id == batch_id)
+    
+    # Eager load the raw record to avoid N+1
+    from sqlalchemy.orm import joinedload
+    query = query.options(joinedload(NormalizedLoan.raw_record))
+    
+    loans = query.all()
+    print(f"[Timer] Validation query loans: {time.time() - start_t:.2f}s", flush=True)
     
     # Pre-compute aggregates for duplicate/suspicious checks
+    # To check uniqueness globally, we need counts from the entire table
+    # But doing this entirely in memory for 8000 rows is okay, though ideally we'd query just what we need.
+    all_loans = db.query(NormalizedLoan.loan_id, NormalizedLoan.borrower_id, NormalizedLoan.original_principal, NormalizedLoan.origination_date).all()
+    
+    print(f"[Timer] Validation query all_loans: {time.time() - start_t:.2f}s", flush=True)
+    
     loan_id_counts = {}
     borrower_loan_counts = {}
     borrower_amount_date_counts = {}
     
-    for l in loans:
-        if l.loan_id:
-            loan_id_counts[l.loan_id] = loan_id_counts.get(l.loan_id, 0) + 1
+    for l_id, b_id, p_orig, d_orig in all_loans:
+        if l_id:
+            loan_id_counts[l_id] = loan_id_counts.get(l_id, 0) + 1
             
-        if l.borrower_id:
-            # Suspicious borrower tracking
-            key_b = f"{l.borrower_id}_{l.origination_date}"
+        if b_id:
+            key_b = f"{b_id}_{d_orig}"
             borrower_loan_counts[key_b] = borrower_loan_counts.get(key_b, 0) + 1
             
-            # Dup tracking
-            key_dup = f"{l.borrower_id}_{l.original_principal}_{l.origination_date}"
+            key_dup = f"{b_id}_{p_orig}_{d_orig}"
             borrower_amount_date_counts[key_dup] = borrower_amount_date_counts.get(key_dup, 0) + 1
 
+    loan_ids = [l.id for l in loans]
+    
+    # Load all existing open exceptions for these loans
+    existing_exceptions = db.query(ExceptionModel).filter(
+        ExceptionModel.normalized_loan_id.in_(loan_ids),
+        ExceptionModel.status.in_(["OPEN", "IN_REVIEW", "CORRECTION_REQUESTED"])
+    ).all()
+    
+    existing_exc_map = {(ex.normalized_loan_id, ex.rule_name): ex for ex in existing_exceptions}
+
     exceptions = []
+    results = []
+    active_exc_set = set()
 
     for loan in loans:
-        # Get raw data for raw-level checks
-        raw = db.query(RawRecord).filter(RawRecord.id == loan.raw_record_id).first() if loan.raw_record_id else None
-        raw_data = raw.row_data if raw else {}
+        raw_data = loan.raw_record.row_data if loan.raw_record else {}
 
         res = ValidationResult(run_id=run.id, normalized_loan_id=loan.id, is_valid=True)
-        db.add(res)
-        db.flush()
+        results.append(res)
         
         def add_exception(rule_name, severity, field, actual, expected, desc):
             res.is_valid = False
-            exceptions.append(ExceptionModel(
-                validation_result_id=res.id,
-                normalized_loan_id=loan.id,
-                rule_name=rule_name,
-                severity=severity,
-                field=field,
-                actual_value=str(actual),
-                expected_condition=str(expected),
-                description=desc
-            ))
-
-        # A. Required Fields
-        for req_field in config.get("required_fields", ["loan_id"]):
-            val = getattr(loan, req_field, None)
-            raw_val = raw_data.get(req_field, "")
-            if not val and not raw_val:
-                add_exception("missing_required_field", "CRITICAL", req_field, "null/empty", "present", f"Missing required field: {req_field}")
-
-        if not loan.document_status and not raw_data.get("document_status"):
-            add_exception("missing_document_status", "HIGH", "document_status", "null/empty", "present", "Missing document status")
-
-        # B. Duplicate Detection
-        if loan.loan_id and loan_id_counts.get(loan.loan_id, 0) > 1:
-            add_exception("duplicate_loan_id", "CRITICAL", "loan_id", loan.loan_id, "unique", "Duplicate loan ID detected")
             
-        if loan.borrower_id:
+            existing = existing_exc_map.get((loan.id, rule_name))
+            if existing:
+                existing.actual_value = str(actual) if actual is not None else None
+                existing.expected_condition = str(expected)
+                existing.description = desc
+                if not hasattr(res, '_existing_exceptions'):
+                    res._existing_exceptions = []
+                res._existing_exceptions.append(existing)
+            else:
+                ex = ExceptionModel(
+                    normalized_loan_id=loan.id,
+                    rule_name=rule_name,
+                    severity=severity,
+                    field=field,
+                    actual_value=str(actual) if actual is not None else None,
+                    expected_condition=str(expected),
+                    description=desc
+                )
+                ex.validation_result_id = None
+                if not hasattr(res, '_temp_exceptions'):
+                    res._temp_exceptions = []
+                res._temp_exceptions.append(ex)
+
+        # A. Missing required fields
+        for field in config.get("required_fields", []):
+            if getattr(loan, field) is None:
+                add_exception("missing_required_field", "CRITICAL", field, None, "Present", f"Missing required field: {field}")
+
+        # B. Duplicate loan ID
+        if loan.loan_id and loan_id_counts.get(loan.loan_id, 0) > 1:
+            add_exception("duplicate_loan_id", "CRITICAL", "loan_id", loan_id_counts.get(loan.loan_id), "1", "Duplicate loan_id in system")
+
+        # J. Duplicate borrower/amount/date
+        if loan.borrower_id and loan.original_principal and loan.origination_date:
             key_dup = f"{loan.borrower_id}_{loan.original_principal}_{loan.origination_date}"
             if borrower_amount_date_counts.get(key_dup, 0) > 1:
                 add_exception("duplicate_borrower_loan", "HIGH", "borrower_id", key_dup, "unique", "Duplicate borrower + principal + date")
@@ -215,10 +248,39 @@ def run_validation(db: Session, batch_id: int = None):
                         f"Conflict detected for {tape_field} between loan_tape and servicer_update"
                     )
 
-    if exceptions:
-        db.add_all(exceptions)
+    print(f"[Timer] Validation processed loop: {time.time() - start_t:.2f}s", flush=True)
     
-    db.commit()
+    try:
+        db.add_all(results)
+        print(f"[Timer] Validation starting flush: {time.time() - start_t:.2f}s", flush=True)
+        db.flush() # Now all res.id are populated
+        
+        for res in results:
+            if hasattr(res, '_existing_exceptions'):
+                for ex in res._existing_exceptions:
+                    ex.validation_result_id = res.id
+                    active_exc_set.add(ex.id)
+            if hasattr(res, '_temp_exceptions'):
+                for ex in res._temp_exceptions:
+                    ex.validation_result_id = res.id
+                    exceptions.append(ex)
+                    
+        # Resolve existing exceptions that were not triggered in this run
+        for ex in existing_exceptions:
+            if ex.id not in active_exc_set:
+                ex.status = "RESOLVED"
+                ex.resolved_at = func.now()
+                ex.resolution_reason = "Fixed in subsequent validation run"
+                    
+        if exceptions:
+            db.add_all(exceptions)
+        
+        print(f"[Timer] Validation starting commit: {time.time() - start_t:.2f}s", flush=True)
+        db.commit()
+        print(f"[Timer] Validation finished commit: {time.time() - start_t:.2f}s", flush=True)
+    except Exception as e:
+        db.rollback()
+        raise e
     
     return {
         "run_id": run.id,

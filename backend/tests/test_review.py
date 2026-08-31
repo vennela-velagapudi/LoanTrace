@@ -6,7 +6,7 @@ from sqlalchemy.pool import StaticPool
 
 from app.main import app
 from app.database import Base, get_db
-from app.models import User, ExceptionModel, NormalizedLoan, AuditLog, ExceptionComment, RawRecord
+from app.models import User, ExceptionModel, NormalizedLoan, AuditLog, ExceptionComment, RawRecord, UploadBatch, ValidationRun, ValidationResult
 from app.core.security import get_current_user
 
 SQLALCHEMY_DATABASE_URL = "sqlite:///:memory:"
@@ -37,12 +37,21 @@ def setup_db(db):
     user_other = User(id=2, username="test_other", role="USER", hashed_password="fake")
     db.add(user_other)
     
-    raw = RawRecord(id=1, row_index=1, row_data={"test": "data"})
+    batch = UploadBatch(id=1, filename="test.csv", status="COMPLETED")
+    db.add(batch)
+    db.flush()
+    
+    val_run = ValidationRun(id=1, batch_id=batch.id)
+    db.add(val_run)
+    db.flush()
+
+    raw = RawRecord(id=1, batch_id=batch.id, row_index=1, row_data={"test": "data"})
     db.add(raw)
     db.flush()
     
     loan = NormalizedLoan(
         id=1,
+        batch_id=batch.id,
         loan_id="LOAN-123",
         current_balance=100.0,
         interest_rate=0.05,
@@ -56,9 +65,14 @@ def setup_db(db):
     db.add(loan)
     db.flush()
     
+    val_res = ValidationResult(id=1, run_id=val_run.id, normalized_loan_id=loan.id, is_valid=False)
+    db.add(val_res)
+    db.flush()
+
     exc = ExceptionModel(
         id=1,
         normalized_loan_id=loan.id,
+        validation_result_id=val_res.id,
         rule_name="negative_balance",
         severity="HIGH",
         status="OPEN",

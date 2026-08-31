@@ -1,1 +1,27 @@
-{"rules": [{"field": "loan_id", "rule": "not_null"}, {"field": "loan_id", "rule": "unique"}]}
+{
+    "required_fields": ["loan_id"],
+    "numeric_rules": {
+        "principal_min": 0,
+        "balance_min": 0
+    },
+    "interest_rate": {
+        "min": 0.0,
+        "max": 0.30
+    },
+    "payment_status": {
+        "valid_statuses": ["Current", "Late (16-30 days)", "Late (31-120 days)", "Default", "Charged Off", "Fully Paid", "Closed"],
+        "dpd_consistency": {
+            "Current": {"max_dpd": 0},
+            "Fully Paid": {"max_dpd": 0},
+            "Closed": {"max_dpd": 0},
+            "Late (16-30 days)": {"min_dpd": 16, "max_dpd": 30},
+            "Late (31-120 days)": {"min_dpd": 31, "max_dpd": 120}
+        }
+    },
+    "stale_threshold_days": 180,
+    "suspicious_borrower_threshold": 3,
+    "valid_states": ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"],
+    "document_rules": {
+        "required_statuses": ["Available", "Pending"]
+    }
+}

@@ -5,7 +5,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
 from app.main import app
 from app.database import Base, get_db
-from app.models import User, ExceptionModel, NormalizedLoan, RawRecord, VerifiedLoan
+from app.models import User, ExceptionModel, NormalizedLoan, RawRecord, VerifiedLoan, UploadBatch, ValidationRun, ValidationResult
 from app.core.security import get_current_user
 from app.core.hashing import generate_record_hash
 
@@ -37,20 +37,34 @@ def setup_db(db):
     user_consumer = User(id=2, username="test_consumer", role="DATA_CONSUMER", hashed_password="fake")
     db.add(user_consumer)
     
-    raw = RawRecord(id=1, row_index=1, row_data={"current_balance": 100000})
+    batch = UploadBatch(id=1, filename="test.csv", status="COMPLETED")
+    db.add(batch)
+    db.flush()
+    
+    val_run = ValidationRun(id=1, batch_id=batch.id)
+    db.add(val_run)
+    db.flush()
+
+    raw = RawRecord(id=1, batch_id=batch.id, row_index=1, row_data={"current_balance": 100000})
     db.add(raw)
     db.flush()
     
-    loan1 = NormalizedLoan(id=1, loan_id="L-1", current_balance=100000.0, raw_record_id=raw.id)
-    loan2 = NormalizedLoan(id=2, loan_id="L-2", current_balance=50000.0, raw_record_id=raw.id)
+    loan1 = NormalizedLoan(id=1, batch_id=batch.id, loan_id="L-1", current_balance=100000.0, raw_record_id=raw.id)
+    loan2 = NormalizedLoan(id=2, batch_id=batch.id, loan_id="L-2", current_balance=50000.0, raw_record_id=raw.id)
     db.add(loan1)
     db.add(loan2)
     db.flush()
     
+    val_res1 = ValidationResult(id=1, run_id=val_run.id, normalized_loan_id=loan1.id, is_valid=False)
+    val_res2 = ValidationResult(id=2, run_id=val_run.id, normalized_loan_id=loan2.id, is_valid=False)
+    db.add(val_res1)
+    db.add(val_res2)
+    db.flush()
+
     # Loan 1 has open exception
-    exc = ExceptionModel(id=1, normalized_loan_id=loan1.id, rule_name="rule1", status="OPEN")
+    exc = ExceptionModel(id=1, normalized_loan_id=loan1.id, validation_result_id=val_res1.id, rule_name="rule1", status="OPEN")
     # Loan 2 has resolved exception
-    exc2 = ExceptionModel(id=2, normalized_loan_id=loan2.id, rule_name="rule2", status="RESOLVED", resolution_reason="Fixed")
+    exc2 = ExceptionModel(id=2, normalized_loan_id=loan2.id, validation_result_id=val_res2.id, rule_name="rule2", status="RESOLVED", resolution_reason="Fixed")
     db.add(exc)
     db.add(exc2)
     db.commit()

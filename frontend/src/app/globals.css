@@ -1,36 +1,42 @@
 @import "tailwindcss";
 
 :root {
-  /* Dark-first theme variables */
-  --background: #020617; /* Slate 950 - deep navy/near black */
-  --foreground: #f8fafc; /* Slate 50 */
+  /* Light professional fintech theme */
+  --background: #F8FAFC; /* Slate 50 - soft neutral background */
+  --foreground: #0F172A; /* Slate 900 - dark navy/charcoal text */
   
-  --card: #0f172a; /* Slate 900 */
-  --card-foreground: #f8fafc;
+  --card: #FFFFFF; /* Pure white cards */
+  --card-foreground: #0F172A;
   
-  --popover: #0f172a;
-  --popover-foreground: #f8fafc;
+  --popover: #FFFFFF;
+  --popover-foreground: #0F172A;
   
-  --primary: #3b82f6; /* Electric Blue / Cyan */
-  --primary-foreground: #020617;
+  --primary: #2563EB; /* Blue 600 - professional blue */
+  --primary-foreground: #FFFFFF;
   
-  --secondary: #1e293b; /* Slate 800 */
-  --secondary-foreground: #f8fafc;
+  --secondary: #F1F5F9; /* Slate 100 */
+  --secondary-foreground: #0F172A;
   
-  --muted: #1e293b;
-  --muted-foreground: #94a3b8; /* Slate 400 */
+  --muted: #F1F5F9;
+  --muted-foreground: #64748B; /* Slate 500 - subtle text */
   
-  --accent: #8b5cf6; /* Violet */
-  --accent-foreground: #f8fafc;
+  --accent: #6366F1; /* Indigo 500 - subtle AI accent */
+  --accent-foreground: #FFFFFF;
   
-  --destructive: #ef4444;
-  --destructive-foreground: #f8fafc;
+  --destructive: #EF4444; /* Restrained red */
+  --destructive-foreground: #FFFFFF;
   
-  --border: #1e293b;
-  --input: #1e293b;
-  --ring: #3b82f6;
+  --success: #10B981; /* Restrained green */
+  --success-foreground: #FFFFFF;
   
-  --radius: 0.5rem;
+  --warning: #F59E0B; /* Amber */
+  --warning-foreground: #FFFFFF;
+  
+  --border: #E2E8F0; /* Slate 200 - subtle borders */
+  --input: #E2E8F0;
+  --ring: #2563EB;
+  
+  --radius: 0.375rem; /* Slightly tighter rounded corners */
 }
 
 @theme inline {
@@ -54,14 +60,15 @@ body {
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
 
-/* Glass-style utilities */
+/* Professional card styling instead of glassmorphism */
 .glass-panel {
-  background: rgba(15, 23, 42, 0.7);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
 
+/* Subtle AI accent instead of glowing neon */
 .ai-glow {
-  box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.15);
+  border-color: rgba(99, 102, 241, 0.3);
 }

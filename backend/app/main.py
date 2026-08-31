@@ -1,13 +1,31 @@
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI, Depends, Request
+from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import text
 from sqlalchemy.orm import Session
 from app.database import get_db, engine
 from app.api import auth, loans, exceptions, verified_loans, audit, summary, files, validation, ai
+import traceback
 
 from app.core.config import settings
 
 app = FastAPI(title="LoanTrace API")
+
+from starlette.middleware.base import BaseHTTPMiddleware
+from fastapi.responses import PlainTextResponse
+import traceback
+
+class ExceptionLoggingMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request: Request, call_next):
+        try:
+            response = await call_next(request)
+            return response
+        except Exception as exc:
+            with open("middleware_error.txt", "w") as f:
+                f.write(traceback.format_exc())
+            return PlainTextResponse("Middleware caught exception", status_code=500)
+
+app.add_middleware(ExceptionLoggingMiddleware)
 
 origins = [origin.strip() for origin in settings.FRONTEND_URL.split(",")]
 

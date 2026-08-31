@@ -42,3 +42,26 @@ def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(), db:
         data={"sub": user.username, "role": user.role}, expires_delta=access_token_expires
     )
     return {"access_token": access_token, "token_type": "bearer"}
+
+from pydantic import BaseModel
+from app.core.security import get_current_user
+
+class ChangePasswordRequest(BaseModel):
+    current_password: str
+    new_password: str
+
+@router.post("/change-password")
+def change_password(
+    payload: ChangePasswordRequest,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    if not verify_password(payload.current_password, current_user.hashed_password):
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Incorrect current password"
+        )
+    
+    current_user.hashed_password = get_password_hash(payload.new_password)
+    db.commit()
+    return {"message": "Password updated successfully"}

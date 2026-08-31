@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Link from "next/link";
 import "./globals.css";
 import ClientNav from "@/components/ClientNav";
 
@@ -24,16 +25,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
         <header className="border-b border-[var(--border)] glass-panel sticky top-0 z-50">
           <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded bg-primary flex items-center justify-center font-bold text-white shadow-[0_0_15px_rgba(59,130,246,0.5)]">LT</div>
-              <span className="font-semibold text-xl tracking-tight">LoanTrace</span>
-            </div>
+            <Link href="/" className="flex items-center gap-2 cursor-pointer hover:opacity-90 transition-opacity">
+              <div className="w-8 h-8 rounded bg-primary flex items-center justify-center font-bold text-white">LT</div>
+              <span className="font-semibold text-xl tracking-tight text-[var(--foreground)]">LoanTrace</span>
+            </Link>
             <ClientNav />
           </div>
         </header>
